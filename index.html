@@ -1,210 +1,391 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>jsPDF - Create PDFs with HTML5 JavaScript Library</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="">
-		<meta name="author" content="">
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>S&amp;W Health &amp; Safety</title>
+    <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="css/mods.css" />
+    <script type="text/javascript" src="js/jspdf/jquery/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="js/jspdf/jquery/jquery-ui-1.8.17.custom.min.js"></script>
+    <script type="text/javascript" src="dist/jspdf.debug.js"></script>
+    <script type="text/javascript" src="js/jspdf/basic.js"></script>
+    <script src="js/vendor/modernizr.js"></script>
+  </head>
+  <body>
+    <div class="row">
+      <div class="large-12 columns">
+        <a href="../orig-shanwil-safety/examples/basic.html" target="_blank">Original App</a>
+      </div>
+    </div>
 
-		<!-- Bootstrap -->
-		<link href="./examples/bootstrap/css/bootstrap.css" rel="stylesheet">
-		<link href="./examples/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <div class="row">
+      <div class="large-12 columns">
+        <h3>HEALTH AND SAFETY PLAN WORKSHEET</h3>
+      </div>
+    </div>
 
-		<!-- Editor CSS -->
-		<link href="./examples/css/editor.css" rel="stylesheet">
+    <div class="row">
+      <div class="large-12 columns">
+      	<div class="panel">
+          <p>This form can be used to generate a standard S&amp;W Site Specific Health and Safety Plan and Job Safety Analysis (JSA) Worksheet (required by Shannon &amp; Wilson for field activities) or an Activity Hazard Analysis (AHA)&mdash;typically required for government projects.</p>
+          <p>This form will generate a JSA/AHA for common tasks only.  Additional input into the JSA/AHA will be required for activity steps unique to your project.</p>
+          <p>After you have completed the SSHSP and JSA/AHA, the project manager or site safety manager must discuss all activity steps, hazards, and controls with the field staff.</p>
+      	</div>
+      </div>
+    </div>
 
-		<!-- See closing body for JS -->
+    <div class="row">
+      <div class="medium-10 large-centered columns">
+        <form>
+          <fieldset>
+            <legend>PROJECT INFORMATION</legend>
+  				  <div class="row">
+  				    <div class="large-12 columns">
+  				      <label><strong>Project Name:</strong></label>
+  				      <input type="text" placeholder="large-12.columns" />
+                <label><strong>Description of Field Activity:</label>
+                <input type="text" placeholder="large-12.columns" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <label><strong>Project Address/Location:</label>
+                <input type="text" placeholder="large-12.columns" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-3 columns">
+                <label><strong>Job No.:</strong></label>
+                <input type="text" placeholder="52-1-00500-001" />
+              </div>
+              <div class="large-3 columns">
+                <label><strong>Field Start Date:</strong></label>
+                <input type="text" placeholder="mm/dd/yyy" />
+              </div>
+              <div class="large-3 columns">
+                <label><strong>Field End Date:</strong></label>
+                <input type="text" placeholder="mm/dd/yyy" />
+              </div>
+              <div class="large-3 columns">
+                <label><strong>Field Staff (init.):</strong></label>
+                <input type="text" placeholder="TWH, BGA, etc." />
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <fieldset>
+                  <legend>Project Manager:</legend>
+                  <div class="large-8 columns">
+                    <input type="text" placeholder="name" />
+                  </div>
+                  <div class="large-4 columns">
+                    <input type="text" placeholder="206-632-8020" />
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <fieldset>
+                  <legend>Onsite Safety Manager:</legend>
+                  <div class="large-8 columns">
+                    <input type="text" placeholder="name" />
+                  </div>
+                  <div class="large-4 columns">
+                    <input type="text" placeholder="206-632-8020" />
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <fieldset>
+                  <legend>Health &amp; Safety Officer:</legend>
+                  <div class="large-8 columns">
+                    <input type="text" placeholder="name" />
+                  </div>
+                  <div class="large-4 columns">
+                    <input type="text" placeholder="206-632-8020" />
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <fieldset>
+                  <legend>Hospital Name &amp; Address:</legend>
+                  <div class="large-12 columns">
+                    <input type="text" placeholder="name" />
+                    <input type="text" placeholder="address" />
+                  </div>
+                </fieldset>
+  				    </div>
+  				  </div>
+          </fieldset>
+          <fieldset>
+            <legend>ACTIVITY QUESTIONS RELATED TO SAFETY (check all that apply)</legend>
+            <div class="row">
+              <div class="large-12 columns">
+                <fieldset>
+                  <legend>How will you get to/from the the job site?</legend>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">by car/truck on paved roads/highways</label><br>
+                  <input id="checkbox2" type="checkbox"><label for="checkbox2">by truck on off‐road trails</label><br>
+                  <input id="checkbox3" type="checkbox"><label for="checkbox3">by truck on off‐road trails</label><br>
+                  <input id="checkbox4" type="checkbox"><label for="checkbox4">by boat overwater</label><br>
+                  <input id="checkbox5" type="checkbox"><label for="checkbox5"><input type="text" placeholder="other"></label>
+                </fieldset>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <fieldset>
+                  <legend>What are the work hours/weather conditions?</legend>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">normal working hours (less than 10-hr shift)</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">hot weather conditions</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">night or low‐light hours</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">cold weather conditions</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">extended hours (>10 hr shift)</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">storm/lightning potential</label><br>
+                  <input id="checkbox5" type="checkbox"><label for="checkbox5"><input type="text" placeholder="other"></label>
+                </fieldset>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <fieldset>
+                  <legend>Where will you be working?</legend>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">on a major highway</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">on a construction site</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">on a city street</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">on a slope/uneven ground</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">on a street shoulder or sidewalk</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">in a landslide area</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">on or within 50 feet of railways</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">over water</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">in a remote area</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">indoors</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">near public activities</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">confined space</label><br>
+                  <input id="checkbox5" type="checkbox"><label for="checkbox5"><input type="text" placeholder="other"></label><br>
+                  <input id="checkbox5" type="checkbox"><label for="checkbox5"><input type="text" placeholder="other"></label>
+                </fieldset>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <fieldset>
+                  <legend>What will you be doing?</legend>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">field observation of borings/cores</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">field reconnaissance</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">field observation of test pits/excavations</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">heavy lifting</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">construction observation (describe):</label><br>
+                  <input id="checkbox5" type="checkbox"><label for="checkbox5"><input type="text" placeholder="other"></label>
+                </fieldset>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <fieldset>
+                  <legend>What types of tools/equipment will you be operating?</legend>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">hand‐operated gas/diesel‐powered tools</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">ladders</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">hand‐operated electrical tools</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">hoists or lifts</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">high pressure tools (air, water)</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">explosives</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">nuclear densometer</label><br>
+                  <input id="checkbox5" type="checkbox"><label for="checkbox5"><input type="text" placeholder="other"></label><br>
+                  <input id="checkbox5" type="checkbox"><label for="checkbox5"><input type="text" placeholder="other"></label>
+                </fieldset>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <fieldset>
+                  <legend>Which tools/equipment require training and/or inspection? (please list tools/equipment)</legend>
+                  <div class="row">
+                    <div class="large-6 columns">
+                      <input type="text" placeholder="1 PID" />
+                      <input type="text" placeholder="2" />
+                      <input type="text" placeholder="3" />
+                      <input type="text" placeholder="4" />
+                    </div>
+                    <div class="large-6 columns">
+                      <input type="text" placeholder="5" />
+                      <input type="text" placeholder="6" />
+                      <input type="text" placeholder="7" />
+                      <input type="text" placeholder="8" />
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>SITE SAFETY EQUIPMENT/TRAINING (check all that apply)</legend>
+            <div class="row">
+              <div class="large-12 columns">
+                <fieldset>
+                  <legend>What kind of plans/permits will be used for this project?</legend>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">site‐specific health and safety plan</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">confined space entry permit</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">traffic control plan</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">railroad occupancy permit</label><br>
+                  <input id="checkbox5" type="checkbox"><label for="checkbox5"><input type="text" placeholder="other"></label><br>
+                  <input id="checkbox5" type="checkbox"><label for="checkbox5"><input type="text" placeholder="other"></label>
+                </fieldset>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <fieldset>
+                  <legend>What safety equipment will be onsite?</legend>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">first aid kit</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">fire estinguisher</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">cell phone</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">ring buoys (overwater work)</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">GPS or other navigation equipment</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">traffic control (cones and signs)</label><br>
+                  <input id="checkbox5" type="checkbox"><label for="checkbox5"><input type="text" placeholder="other"></label><br>
+                  <input id="checkbox5" type="checkbox"><label for="checkbox5"><input type="text" placeholder="other"></label>
+                </fieldset>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <fieldset>
+                  <legend>What types of personal protective equipment (PPE) are required?</legend>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">hard hat</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">high-visibility vest</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">safety glasses</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">safety toe boots</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">ear plugs</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">work gloves</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">personal flotation device (work over or near water)</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">ropes/harness (fall protection)</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">dosimetry badge</label><br>
+                  <input id="checkbox5" type="checkbox"><label for="checkbox5"><input type="text" placeholder="other"></label><br>
+                  <input id="checkbox5" type="checkbox"><label for="checkbox5"><input type="text" placeholder="other"></label>
+                </fieldset>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <fieldset>
+                  <legend>What types of training are required to perform the work?</legend>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">first aid/CPR</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">confined-space entry</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">railroad safety training</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">40‐hour HAZWOPER</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">contractor safety training</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">certified drilling license</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">nuclear gauge safety training</label><br>
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">HAZMAT certification</label><br>
+                  <input id="checkbox5" type="checkbox"><label for="checkbox5"><input type="text" placeholder="other"></label><br>
+                  <input id="checkbox5" type="checkbox"><label for="checkbox5"><input type="text" placeholder="other"></label>
+                </fieldset>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <fieldset>
+                  <legend>FORM PREPARATION</legend>
+                  <label>Prepared by:</label>
+                  <input type="text" placeholder="large-12.columns" />
+                  <label>Reviewed by:</label>
+                  <input type="text" placeholder="large-12.columns" />
+                  <label>Date:</label>
+                  <input type="text" placeholder="large-12.columns" />
+          <p>
+    <script src="jquery-1.7.1.min.js"></script>
+    <script src="jspdf.js"></script>
+    <script src="jspdf.plugin.standard_fonts_metrics.js"></script>
+    <script src="jspdf.plugin.split_text_to_size.js"></script>
+    <script src="jspdf.plugin.from_html.js"></script>
 
-		<script src="http://use.edgefonts.net/source-code-pro.js"></script>
-	</head>
+    <script>
+        $(document).ready(function () {
+            $(function () {
+                var doc = new jsPDF();
+                var specialElementHandlers = {
+                    '#editor': function (element, renderer) {
+                        return true;
+                    }
+                };
 
-	<body>
-		<style>#forkongithub a{background:#000;color:#fff;text-decoration:none;font-family:arial, sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#333;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:absolute;display:block;top:0;right:0;width:160px;overflow:hidden;height:200px;}#forkongithub a{width:160px;position:absolute;top:40px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/MrRio/jsPDF">Star me on GitHub</a></span>
-		<div class="container">
+                $('#cmd').click(function () {
+                    doc.fromHTML($('#content').html(), 15, 15, {
+                        'width': 170,
+                        'elementHandlers': specialElementHandlers
+                    });
+                });
+            });
+        });
+/* var doc = new jsPDF('p', 'pt', 'letter'); */
+var doc = new jsPDF();
 
-			<div class="masthead">
-				<div class="pull-right">
-					<div class="tweet-buttons">
-						<a href="https://twitter.com/share" class="twitter-share-button" data-via="MrRio" data-size="large">Tweet</a>
-						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-						<a href="https://twitter.com/MrRio" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @MrRio</a>
-						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-					</div>
-					<!--a class="btn btn-primary btn-large" href="http://jspdf.com/downloads/jsPDF-0.9.0rc2.zip">Download Now</a>
-					<p class="muted" style="text-align: right;">Version 0.9.0rc2</p-->
-					<a class="btn btn-primary btn-large" href="https://github.com/MrRio/jsPDF">Download Now</a>
-					<p class="muted" style="text-align: right;" id="dversion">Version 0.9.0rc2</p>
-				</div>
-				<h1 class="muted">jsPDF</h1>
-				<h4>HTML5 JavaScript PDF generation library from <a href="http://twitter.com/MrRio">@MrRio</a> at <a href="http://parall.ax">Parallax</a></h4>
-			</div>
+text = ["SHANNON & WILSON, INC"];
 
-			<div class="row-fluid">
-				<div class="span6" style="float: right">
-					<iframe class="preview-pane" type="application/pdf" width="100%" height="650" frameborder="0" style="position:relative;z-index:999"></iframe>
-				</div>
-				<div class="span5 no-gutter">
+doc.setFontSize (12);
+verticalOffset = 20;
+horizontalOffset = 20;
 
-					<h2>Have a play.</h2>
+for (var i in text)
+{
+  splitTitle = doc.splitTextToSize(text[i], 160);
+  for (var j in splitTitle)
+  {
+    /* horizontalOffset = (160 - splitTitle[j].length)/2; */
+    doc.text (horizontalOffset, verticalOffset, splitTitle[j]);
+    doc.text("This text is centered around this point.", 70, 50, 'center' );
+    /* doc.text (splitTitle[j], 100, verticalOffset, 'center'); */
+    verticalOffset += 5;
+    if (verticalOffset >= 270)
+    {
+      doc.addPage();
+      verticalOffset = 20;
+    }
+  }
+}
+doc.save('Test.pdf');
 
-					<p>A HTML5 client-side solution for generating PDFs. Perfect for event tickets, reports, certificates, you name it! </p>
+var pdf = new jsPDF('p', 'pt', 'letter');
 
-					<p><b>No servers were used in the making of this demo.</b></p>
+    pdf.text( 'This text is normally\raligned.', 140, 50 );
 
-					<div class="template-picker">
-						<label for="template">Choose example</label>
-						<select id="template" name="template">
-							<option>Hold your horses...</option>
-						</select>
-					</div>
-				</div>
+    pdf.text( 'This text is centered\raround\rthis point.', 140, 120, 'center' );
 
-				<div id="editor" class="bypass"></div>
+    pdf.text( 'This text is rotated\rand centered around\rthis point.', 140, 300, 45, 'center' );
 
-			   <div class="controls">
-					<div class="pull-right">
-						<!--<a href="#" class="btn btn-primary">Download Your Code</a>-->
-						<a href="#" class="btn btn-primary download-pdf">Download PDF</a>
-					</div>
+    pdf.text( 'This text is\raligned to the\rright.', 140, 400, 'right' );
 
-					<label class="checkbox">
-						<input type="checkbox" id="auto-refresh" checked="checked"> Auto refresh on changes?
-					</label>
-					<a href="#" class="run-code hide btn btn-success">Run Code</a>
+    pdf.text( 'This text is\raligned to the\rright.', 140, 550, 45, 'right' );
 
-					<div class="alert hide">
-						Auto refresh disabled for this
-					</div>
+    pdf.text( 'This single line is centered', 460, 50, 'center' );
 
-			   </div>
+    pdf.text( 'This right aligned text\r\rhas an empty line.', 460, 200, 'right' );
 
-			</div>
-			<div class="clerfix"></div>
-			<div class="span12 credits">
 
-				<h2>The Basics</h2>
+    pdf.save('Test.pdf');
 
-				<p>Simply include the jsPDF library in your <span class="source">&lt;head&gt;</span>, generate your PDF using the <i>many</i> built-in functions, then hook up a button to trigger the download. All the examples here use jQuery.</p>
+            </script>
+            <button id="cmd" class="button expand">Generate Health and Safety Plan</button>
+            <button id="cmd" class="button expand">Generate Activity Hazard Analysis</button>
+          </p>
+                </fieldset>
+              </div>
+            </div>
+          </fieldset>
+				</form>
+      </div>
+    </div>
 
-				<h2>Browser Compatibility</h2>
-
-				<p>jsPDF will work in IE6+*, Firefox 3+, Chrome, Safari 3+, Opera. For IE9 and below, we lazily load a Flash shim called Downloadify which enables the files to be downloaded.</p>
-
-				<p>* Current build does not have IE6-9 shim enabled</p>
-
-				<p><strong>NB:</strong> UTF-8 is <em>not</em> supported by default, however there might be some plugins allowing you to use it, such as <em>addHTML</em></p>
-
-				<p>十五向學,三十而立,四十而不惑,五十而知天命,六十而耳順,七十而從心欲，不踰矩.</p>
-
-				<h2>Need Help?</h2>
-
-				<p>Send me a <a href="http://twitter.com/MrRio">tweet</a> and I'll see if I can help :)</p>
-
-				<!-- ADD_PAGE -->
-				<h2>Credits</h2>
-
-				<p>Big thanks to Daniel Dotsenko from <a href="http://willow-systems.com">Willow Systems Corporation</a> for making huge contributions to the codebase. </p>
-
-				<p>Thanks to Ajaxian.com for <a href="http://ajaxian.com/archives/dynamically-generic-pdfs-with-javascript">featuring us back in 2009</a>.</p>
-
-				<p>Everyone else that's contributed patches or bug reports. You rock.</p>
-
-				<h2>License</h2>
-
-				<p>(MIT License)</p>
-
-				<p>Copyright (c) 2010-2012 James Hall, <a href="https://github.com/MrRio/jsPDF">https://github.com/MrRio/jsPDF</a></p>
-
-				<p>Permission is hereby granted, free of charge, to any person obtaining
-				a copy of this software and associated documentation files (the
-				"Software"), to deal in the Software without restriction, including
-				without limitation the rights to use, copy, modify, merge, publish,
-				distribute, sublicense, and/or sell copies of the Software, and to
-				permit persons to whom the Software is furnished to do so, subject to
-				the following conditions:</p>
-
-				<p>The above copyright notice and this permission notice shall be
-				included in all copies or substantial portions of the Software.</p>
-
-				<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-				EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-				MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-				NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-				LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-				OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-				WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
-
-			</div>
-
-		</div> <!-- /container -->
-
-		<footer>&copy; 2013 James Hall - <a href="http://snapshotmedia.co.uk/privacy-policy">Privacy Policy</a></footer>
-
-		<!-- Scripts down here -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-		<script src="http://html2canvas.hertzen.com/build/html2canvas.js"></script>
-
-		<!-- Code editor -->
-
-		<script src="https://cdn.jsdelivr.net/ace/1.1.01/noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-
-		<!-- Scripts in development mode -->
-		<script type="text/javascript" src="dist/jspdf.min.js"></script>
-		<!--script type="text/javascript" src="jspdf.js"></script>
-		<script type="text/javascript" src="./libs/FileSaver.js/FileSaver.js"></script>
-		<script type="text/javascript" src="./libs/Blob.js/Blob.js"></script>
-		<script type="text/javascript" src="./libs/Blob.js/BlobBuilder.js"></script>
-
-		<script type="text/javascript" src="./libs/deflate.js"></script>
-		<script type="text/javascript" src="./libs/adler32cs.js/adler32cs.js"></script>
-
-		<script type="text/javascript" src="./plugins/addimage.js"></script>
-		<script type="text/javascript" src="./plugins/from_html.js"></script>
-		<script type="text/javascript" src="./plugins/ie_below_9_shim.js"></script>
-		<script type="text/javascript" src="./plugins/svg.js"></script>
-		<script type="text/javascript" src="./plugins/split_text_to_size.js"></script>
-		<script type="text/javascript" src="./plugins/standard_fonts_metrics.js"></script-->
-
-		<!-- Editor -->
-		<script type="text/javascript" src="./examples/js/editor.js"></script>
-
-		<!-- Analytics -->
-		<script type="text/javascript">
-			$(document).ready(function() {
-				if(jsPDF && jsPDF.version) {
-					$('#dversion').text('Version ' + jsPDF.version.split('T').shift());
-				}
-			});
-
-		  var _gaq = _gaq || [];
-		  _gaq.push(['_setAccount', 'UA-32767308-2']);
-		  _gaq.push(['_trackPageview']);
-
-		  (function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		  })();
-
-		</script>
-		<!--script type="text/javascript">
-		adroll_adv_id = "P3OVQHTGMBA37E2Z6M77AQ";
-		adroll_pix_id = "GHWLXTPCARHSXCCSWFFDR7";
-		(function () {
-		var oldonload = window.onload;
-		window.onload = function(){
-		   __adroll_loaded=true;
-		   var scr = document.createElement("script");
-		   var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
-		   scr.setAttribute('async', 'true');
-		   scr.type = "text/javascript";
-		   scr.src = host + "/j/roundtrip.js";
-		   ((document.getElementsByTagName('head') || [null])[0] ||
-			document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
-		   if(oldonload){oldonload()}};
-		}());
-		</script-->
-
-	</body>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
 </html>
