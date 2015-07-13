@@ -122,8 +122,8 @@
                 <fieldset>
                   <legend>Hospital Name &amp; Address:</legend>
                   <div class="large-12 columns">
-                    <input type="text" placeholder="name" />
-                    <input type="text" placeholder="address" />
+                    <input type="text" name="hospitalName" value="" placeholder="name" />
+                    <input type="text" name="hospitalAddress" value="" placeholder="address" />
                   </div>
                 </fieldset>
   				    </div>
@@ -248,12 +248,13 @@
               <div class="large-12 columns">
                 <fieldset>
                   <legend>What safety equipment will be onsite?</legend>
-                  <input id="checkbox1" type="checkbox"><label for="checkbox1">first aid kit</label><br>
-                  <input id="checkbox1" type="checkbox"><label for="checkbox1">fire estinguisher</label><br>
-                  <input id="checkbox1" type="checkbox"><label for="checkbox1">cell phone</label><br>
-                  <input id="checkbox1" type="checkbox"><label for="checkbox1">ring buoys (overwater work)</label><br>
-                  <input id="checkbox1" type="checkbox"><label for="checkbox1">GPS or other navigation equipment</label><br>
-                  <input id="checkbox1" type="checkbox"><label for="checkbox1">traffic control (cones and signs)</label><br>
+                  <input id="firstAid" type="checkbox"><label for="firstAid">first aid kit</label><br>
+                  <input id="fireEstinguisher" type="checkbox"><label for="fireEstinguisher">fire estinguisher</label><br>
+                  <input id="vehicles" type="checkbox"><label for="vehicles">vehicles</label><br>
+                  <input id="ppeEquipment" type="checkbox"><label for="ppeEquipment">ring buoys (overwater work)</label><br>
+                  <input id="pid" type="checkbox"><label for="pid">photo-ionization detector (PID)</label><br>
+                  <input id="gpsNav" type="checkbox"><label for="gpsNav">GPS or other navigation equipment</label><br>
+                  <input id="explosionMeter" type="checkbox"><label for="explosionMeter">explosion meter</label><br>
                   <input id="checkbox5" type="checkbox"><label for="checkbox5"><input type="text" placeholder="other"></label><br>
                   <input id="checkbox5" type="checkbox"><label for="checkbox5"><input type="text" placeholder="other"></label>
                 </fieldset>
@@ -263,15 +264,19 @@
               <div class="large-12 columns">
                 <fieldset>
                   <legend>What types of personal protective equipment (PPE) are required?</legend>
-                  <input id="checkbox1" type="checkbox"><label for="checkbox1">hard hat</label><br>
-                  <input id="checkbox1" type="checkbox"><label for="checkbox1">high-visibility vest</label><br>
-                  <input id="checkbox1" type="checkbox"><label for="checkbox1">safety glasses</label><br>
-                  <input id="checkbox1" type="checkbox"><label for="checkbox1">safety toe boots</label><br>
-                  <input id="checkbox1" type="checkbox"><label for="checkbox1">ear plugs</label><br>
-                  <input id="checkbox1" type="checkbox"><label for="checkbox1">work gloves</label><br>
-                  <input id="checkbox1" type="checkbox"><label for="checkbox1">personal flotation device (work over or near water)</label><br>
-                  <input id="checkbox1" type="checkbox"><label for="checkbox1">ropes/harness (fall protection)</label><br>
-                  <input id="checkbox1" type="checkbox"><label for="checkbox1">dosimetry badge</label><br>
+                  <input id="hardHat" type="checkbox"><label for="hardHat">hard hat</label><br>
+                  <input id="vest" type="checkbox"><label for="Vest">high-visibility vest</label><br>
+                  <input id="glasses" type="checkbox"><label for="Glasses">safety glasses</label><br>
+                  <input id="boots" type="checkbox"><label for="checkbox1">safety toe boots</label><br>
+                  <input id="earPlugs" type="checkbox"><label for="earPlugs">ear plugs</label><br>
+                  <input id="earMuffs" type="checkbox"><label for="earMuffs">ear muffs</label><br>
+                  <input id="gloves" type="checkbox"><label for="gloves">work gloves</label><br>
+                  <input id="pfd" type="checkbox"><label for="pfd">personal flotation device (work over or near water)</label><br>
+                  <input id="fallProtection" type="checkbox"><label for="fallProtection">ropes/harness (fall protection)</label><br>
+                  <input id="dosimetryBadge" type="checkbox"><label for="dosimetryBadge">dosimetry badge</label><br>
+                  <input id="tyvekClothing" type="checkbox"><label for="tyvekClothing">tyvek clothing</label><br>
+                  <input id="nitrileGloves" type="checkbox"><label for="nitrileGloves">nitrile gloves</label><br>
+                  <input id="respirator" type="checkbox"><label for="respirator">respirator</label><br>
                   <input id="checkbox5" type="checkbox"><label for="checkbox5"><input type="text" placeholder="other"></label><br>
                   <input id="checkbox5" type="checkbox"><label for="checkbox5"><input type="text" placeholder="other"></label>
                 </fieldset>
@@ -304,76 +309,90 @@
                   <input type="text" name="reviewerName" value="" placeholder="large-12.columns" />
                   <label>Date:</label>
                   <input type="text" name="dateToday" value="" placeholder="large-12.columns" />
-          <p>
-
-    <script>
+                  <p>
+<script>
 function generateDoc1 (form) {
   /* var doc = new jsPDF('p', 'pt', 'letter'); */
   var doc = new jsPDF();
   /*var TestVar = form.inputbox.value;*/
 
-  text = ["SITE-SPECIFIC HEALTH AND SAFETY PLAN",
-  form.jobName.value,
-  form.fieldLocation.value,
-  "This Health and Safety Plan is to be used in conjunction with Shannon & Wilson's Corporate Health and Safety Program",
-  "INTRODUCTION",
-  "This Site-specific Health & Safety Plan (SSHSP) has been prepared for Shannon & Wilson personnel performing project-specific activities for the " +
-  form.jobName.value + " in " + form.fieldLocation.value +
-  ".  This plan provides a Job Safety Analysis (JSA) specific to the site and the work to be performed during the project.  All field personnel must understand the JSA before going to the site.  Acknowledgement that personnel are aware of this SSHSP and the JSA will be documented by signing the Acknowledgement Form included on the back of this document.  " +
-  "Field activities to be performed under this SSHSP include the following: " +
-  form.fieldActivity.value +
-  ".  If field activities other than those noted are performed, this document should be revised. The field activities are anticipated to extend from " +
-  form.fieldStart.value + " to " + form.fieldEnd.value + ".",
-  "ORGANIZATION",
-  "Shannon & Wilson expects its employees to follow the policies and procedures set forth in the Corporate Health and Safety plan and the specific guidelines included in this SSHSP. Employees at all level of organization are covered by this requirement. In certain cases, deviations to a policy or procedure may be appropriate, but any changes must bye justifiable and documented. Changes in this program will only be made with the prior approval of the Site Safety Officer (SSO).",
-  "The goal on this project, as on all Shannon & Wilson projects, is to experience zero injuries and to remain in compliance with applicable federal, state, and local health and safety requirements.  Personnel accountable for employee's safety and health on this project include the Project Manager (PM), the SSO, and the Health and Safety Officer (HSO). The names and contact numbers for these key personnel for this project are listed below.",
-  "Project Manager:  " + form.pmName.value + "  " + form.pmPhone.value,
-  "Site Safety Officer:  " + form.ssoName.value + "  " + form.ssoPhone.value,
-  "Health & Safety Officer:  " + form.hsoName.value + "  "+ form.hsoPhone.value,
-  "JOB HAZARD ANALYSIS",
-  "Physical hazards associated with this project are summarized on a JSA worksheet, presented on the following pages. The JSA lists the physical hazards by activity and the safe job practices (engineering, administrative, and personal controls) that should be undertaken to minimize these hazards.",
-  "IN CASE OF EMERGENCY - CALL 911",
+text1 = [
 
-  "(see next page for 911 call procedures)",
+"SITE-SPECIFIC HEALTH AND SAFETY PLAN",
+form.jobName.value,
+form.fieldLocation.value,
+"This Health and Safety Plan is to be used in conjunction with Shannon & Wilson's Corporate Health and Safety Program",
 
-  "911 CALL PROCEDURES",
+"INTRODUCTION",
 
-  "In an EMERGENCY, call 911 as soon as possible.  Give the following information to the 911 dispatcher:",
-  "-WHERE the emergency is - use addresses, cross streets, or landmarks.",
-  "-TELEPHONE NUMBER you are calling from.",
-  "-WHAT HAPPENED - type of emergency.",
-  "-HOW MANY people need help?",
-  "-HOW MUCH was spilled (if applicable)?",
-  "-WHAT is being done?",
-  "YOU HANG UP LAST - Let the person you called hang up first.  In the event of a MEDICAL EMERGENCY, do the following:",
-  "Call for help as soon as possible. Assess whether the scene is safe.  If it is, help; if it is not, DO NOT BECOME ANOTHER VICTIM.",
-  "Administer CPR and emergency first aid if necessary.",
-  "If the victim can be moved, transport to the hospital while one person calls the hospital to notify them.  If the injury or exposure is not life threatening, decontaminate the individual first.  If decontamination is not feasible, wrap the individual in a blanket or sheet of plastic prior to transport; transport to the hospital via rescue squad vehicle.",
-  "Notify the PM and the HSO.  If Shannon & Wilson staff are involved in the incident, the HSO will notify the Corporate Health and Safety Officer within 24 hours.",
-  "Complete appropriate form(s); see Appendix A of the Corporate Health and Safety Program.",
+"This Site-specific Health & Safety Plan (SSHSP) has been prepared for Shannon & Wilson personnel performing project-specific activities for the " +
+form.jobName.value + " in " + form.fieldLocation.value +
+".  This plan provides a Job Safety Analysis (JSA) specific to the site and the work to be performed during the project.  All field personnel must understand the JSA before going to the site.  Acknowledgement that personnel are aware of this SSHSP and the JSA will be documented by signing the Acknowledgement Form included on the back of this document.  " +
 
-  "ACKNOWLEDGEMENT AND SIGNATURE",
+"Field activities to be performed under this SSHSP include the following: " +
+form.fieldActivity.value +
+".  If field activities other than those noted are performed, this document should be revised. The field activities are anticipated to extend from " +
+form.fieldStart.value + " to " + form.fieldEnd.value + ".",
 
-  "I acknowledge that I have read the SSHSP for the " +
-  form.jobName.value + " and that I understand the job hazards and safe job practices summarized on the JSA.   I have met with the PM to discuss the project details and any questions I have related to my personal safety.  I also acknowledge that I have read the Corporate Health and Safety Program documents for other Health and Safety information.",
+"ORGANIZATION",
 
-  "Printed Name:  ___________________________________________",
-  "Signature:  ___________________________________________",
-  "Date:  ___________________________________________",
+"Shannon & Wilson expects its employees to follow the policies and procedures set forth in the Corporate Health and Safety plan and the specific guidelines included in this SSHSP. Employees at all level of organization are covered by this requirement. In certain cases, deviations to a policy or procedure may be appropriate, but any changes must bye justifiable and documented. Changes in this program will only be made with the prior approval of the Site Safety Officer (SSO).",
 
-  "SHANNON & WILSON, INC",
-  form.dateToday.value,
-  form.jobNumber.value,
-  "PAGE #/#"
+"The goal on this project, as on all Shannon & Wilson projects, is to experience zero injuries and to remain in compliance with applicable federal, state, and local health and safety requirements.  Personnel accountable for employee's safety and health on this project include the Project Manager (PM), the SSO, and the Health and Safety Officer (HSO). The names and contact numbers for these key personnel for this project are listed below.",
+
+"Project Manager:  " + form.pmName.value + "  " + form.pmPhone.value,
+"Site Safety Officer:  " + form.ssoName.value + "  " + form.ssoPhone.value,
+"Health & Safety Officer:  " + form.hsoName.value + "  "+ form.hsoPhone.value,
+
+"JOB HAZARD ANALYSIS",
+
+"Physical hazards associated with this project are summarized on a JSA worksheet, presented on the following pages. The JSA lists the physical hazards by activity and the safe job practices (engineering, administrative, and personal controls) that should be undertaken to minimize these hazards.",
+
+"S&W logo image    JOB SAFETY ANALYSIS WORKSHEET",
+
+"Project Number:  " + form.jobNumber.value + "  Date:  " + form.dateToday.value,
+"Project Title:  " + form.jobNumber.value + "  Prepared By:  " + form.preparerName.value,
+"Reviewed By:  " + form.reviewerName.value,
+"Project Location:  " + form.fieldLocation.value + "  Project Mngr:  " + form.pmName.value,
+"Brief Description of Field Activities:  " + form.fieldActivity.value + "  Site Safety:  " + form.ssoName.value,
+"Field Staff:  " + form.fieldStaff.value,
+"Field Start Date:  " + form.fieldStart.value,
+"Field End Date:  " + form.fieldEnd.value
+];
+
+var ppeTable =  [/* [ppeID, ppeName, ppeDescription, ppeStandard, ppeInspection, ppeTraining] */
+ [1, "Hard Hat", "ANSI Z89.1-1997 Class G", "Full brim or cap style", "", ""],
+ [2, "Safety Boots", "ANSI Z41 PT99 I75 C75 or ASTM F2413-05 MI/75; C/75", "Leather or like leather material that protects the ankle and contains a safety toe", "", ""],
+ [3, "Safety Vest", "ANSI/SEA 107-2010 or 2004 Class 2", "High Visibility garment", "", ""],
+ [4, "Safety Glasses", "ANSI Z87.1-2010 Z87+ or Z87-2+", "Impact resistance lens and side shield", "Confirm no scratches that would impair visibility", ""],
+ [5, "Ear Plugs", "", "With noise reduction rating to reduce levels below 85 dBA", "", ""],
+ [6, "Ear Muffs", "", "", "", ""],
+ [7, "Personal Flotation Device (PFD)", "", "", "", ""],
+ [8, "Gloves", "", "", "Confirm no holes are present and that gloves are flexible", ""],
+ [9, "Respirator", "", "", "", "Current fit test required"],
+ [10, "Ropes/Harness", "", "", "", ""],
+ [11, "Tyvek Clothing", "", "", "Confirm no holes are present", ""],
+ [12, "Nitrile Gloves", "", "", "Confirm no holes are present", ""],
+ [13, "Dosimetry Badge", "", "", "", ""]
+];
+
+equipmentTable = /* [equipID, equipDescription, equipInspection, equipTraining] */
+[[1, "First aid kit", "Check to make sure kit is complete prior to use at site.  Replace used or outdated items.", "Current First Aid certification is required for all S&W employees but use of first aid kit is permitted for anyone."],
+ [2, "Fire extinguisher", "Monthly inspection by S&W and yearly professional inspection.  Check to make sure the inspection tag is not expired.", "Fire extinguisher use training preferred, but use of fire extinguisher is permitted for anyone in an emergency."],
+ [3, "Vehicles", "Routine inspection by S&W so that vehicles meet the requirements for safe operation on roads.  Seat belts shall be in good working order with no visible damage or alterations.", "Valid driver's license."],
+ [4, "Personal Protective Equipment (PPE)", "PPE shall be in good working order with no visible damage or alterations.", ""],
+ [5, "Photo-Ionization Detector (PID)", "", ""],
+ [6, "Global Positioning Unit - Handheld (GPS)", "", ""],
+ [7, "Explosion Meter", "", ""]
 ];
 
   doc.setFontSize (12);
   verticalOffset = 20;
   horizontalOffset = 20;
 
-  for (var i in text)
+  for (var i in text1)
   {
-    splitTitle = doc.splitTextToSize(text[i], 160);
+    splitTitle = doc.splitTextToSize(text1[i], 160);
     for (var j in splitTitle)
     {
       /* horizontalOffset = (160 - splitTitle[j].length)/2; */
@@ -388,6 +407,57 @@ function generateDoc1 (form) {
       }
     }
   }
+
+  text = "Required PPE:  ";
+
+  if (form.hardHat.checked) {text += ppeTable[0][1] + ", ";}
+  if (form.boots.checked) {text += ppeTable[1][1] + ", ";}
+  if (form.vest.checked) {text += ppeTable[2][1] + ", ";}
+  if (form.glasses.checked) {text += ppeTable[3][1] + ", ";}
+  if (form.earPlugs.checked) {text += ppeTable[4][1] + ", ";}
+  if (form.earMuffs.checked) {text += ppeTable[5][1] + ", ";}
+  if (form.pfd.checked) {text += ppeTable[6][1] + ", ";}
+  if (form.gloves.checked) {text += ppeTable[7][1] + ", ";}
+  if (form.respirator.checked) {text += ppeTable[8][1] + ", ";}
+  if (form.fallProtection.checked) {text += ppeTable[9][1] + ", ";}
+  if (form.tyvekClothing.checked) {text += ppeTable[10][1] + ", ";}
+  if (form.nitrileGloves.checked) {text += ppeTable[11][1] + ", ";}
+  if (form.dosimetryBadge.checked) {text += ppeTable[12][1] + ", ";}
+
+  splitTitle = doc.splitTextToSize(text, 160);
+  for (var jj in splitTitle)
+  {
+    doc.text (horizontalOffset, verticalOffset, splitTitle[jj]);
+    verticalOffset += 5;
+    if (verticalOffset >= 270)
+    {
+      doc.addPage();
+      verticalOffset = 20;
+    }
+  }
+
+  text = "Safety Equipment:  ";
+
+  if (form.firstAid.checked) {text += equipmentTable[0][1] + ", ";}
+  if (form.fireEstinguisher.checked) {text += equipmentTable[1][1] + ", ";}
+  if (form.vehicles.checked) {text += equipmentTable[2][1] + ", ";}
+  if (form.ppeEquipment.checked) {text += equipmentTable[3][1] + ", ";}
+  if (form.pid.checked) {text += equipmentTable[4][1] + ", ";}
+  if (form.gpsNav.checked) {text += equipmentTable[5][1] + ", ";}
+  if (form.explosionMeter.checked) {text += equipmentTable[6][1] + ", ";}
+
+  splitTitle = doc.splitTextToSize(text, 160);
+  for (var ii in splitTitle)
+  {
+    doc.text (horizontalOffset, verticalOffset, splitTitle[ii]);
+    verticalOffset += 5;
+    if (verticalOffset >= 270)
+    {
+      doc.addPage();
+      verticalOffset = 20;
+    }
+  }
+
   doc.save('Test.pdf');
 }
 /*var pdf = new jsPDF('p', 'pt', 'letter');
@@ -399,13 +469,14 @@ function generateDoc1 (form) {
     pdf.text( 'This right aligned text\r\rhas an empty line.', 460, 200, 'right' );
     pdf.save('Test.pdf');*/
 
-            </script>
-          </p>
+</script>
+                  </p>
                 </fieldset>
               </div>
             </div>
           </fieldset>
             <input id="cmd" class="button expand" type="button" name="button" value="Generate Health and Safety Plan" onClick="generateDoc1(this.form)">
+            <input id="cmd" class="button expand" type="button" name="button" value="Reset Form" onClick="form.reset()">
             <!-- <button id="cmd" class="button expand">Generate Health and Safety Plan</button>
             <button id="cmd" class="button expand">Generate Activity Hazard Analysis</button> -->
 				</form>

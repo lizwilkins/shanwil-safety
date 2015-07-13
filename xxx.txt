@@ -1,0 +1,66 @@
+text = [
+
+"SITE-SPECIFIC HEALTH AND SAFETY PLAN",
+form.jobName.value,
+form.fieldLocation.value,
+"This Health and Safety Plan is to be used in conjunction with Shannon & Wilson's Corporate Health and Safety Program",
+
+"INTRODUCTION",
+
+"This Site-specific Health & Safety Plan (SSHSP) has been prepared for Shannon & Wilson personnel performing project-specific activities for the " +
+form.jobName.value + " in " + form.fieldLocation.value +
+".  This plan provides a Job Safety Analysis (JSA) specific to the site and the work to be performed during the project.  All field personnel must understand the JSA before going to the site.  Acknowledgement that personnel are aware of this SSHSP and the JSA will be documented by signing the Acknowledgement Form included on the back of this document.  " +
+
+"Field activities to be performed under this SSHSP include the following: " +
+form.fieldActivity.value +
+".  If field activities other than those noted are performed, this document should be revised. The field activities are anticipated to extend from " +
+form.fieldStart.value + " to " + form.fieldEnd.value + ".",
+
+"ORGANIZATION",
+
+"Shannon & Wilson expects its employees to follow the policies and procedures set forth in the Corporate Health and Safety plan and the specific guidelines included in this SSHSP. Employees at all level of organization are covered by this requirement. In certain cases, deviations to a policy or procedure may be appropriate, but any changes must bye justifiable and documented. Changes in this program will only be made with the prior approval of the Site Safety Officer (SSO).",
+
+"The goal on this project, as on all Shannon & Wilson projects, is to experience zero injuries and to remain in compliance with applicable federal, state, and local health and safety requirements.  Personnel accountable for employee's safety and health on this project include the Project Manager (PM), the SSO, and the Health and Safety Officer (HSO). The names and contact numbers for these key personnel for this project are listed below.",
+
+"Project Manager:  " + form.pmName.value + "  " + form.pmPhone.value,
+"Site Safety Officer:  " + form.ssoName.value + "  " + form.ssoPhone.value,
+"Health & Safety Officer:  " + form.hsoName.value + "  "+ form.hsoPhone.value,
+
+"JOB HAZARD ANALYSIS",
+
+"Physical hazards associated with this project are summarized on a JSA worksheet, presented on the following pages. The JSA lists the physical hazards by activity and the safe job practices (engineering, administrative, and personal controls) that should be undertaken to minimize these hazards.",
+
+"IN CASE OF EMERGENCY - CALL 911",
+
+"(see next page for 911 call procedures)",
+
+"911 CALL PROCEDURES",
+
+"In an EMERGENCY, call 911 as soon as possible.  Give the following information to the 911 dispatcher:",
+"-WHERE the emergency is - use addresses, cross streets, or landmarks.",
+"-TELEPHONE NUMBER you are calling from.",
+"-WHAT HAPPENED - type of emergency.",
+"-HOW MANY people need help?",
+"-HOW MUCH was spilled (if applicable)?",
+"-WHAT is being done?",
+"YOU HANG UP LAST - Let the person you called hang up first.  In the event of a MEDICAL EMERGENCY, do the following:",
+"Call for help as soon as possible. Assess whether the scene is safe.  If it is, help; if it is not, DO NOT BECOME ANOTHER VICTIM.",
+"Administer CPR and emergency first aid if necessary.",
+"If the victim can be moved, transport to the hospital while one person calls the hospital to notify them.  If the injury or exposure is not life threatening, decontaminate the individual first.  If decontamination is not feasible, wrap the individual in a blanket or sheet of plastic prior to transport; transport to the hospital via rescue squad vehicle.",
+"Notify the PM and the HSO.  If Shannon & Wilson staff are involved in the incident, the HSO will notify the Corporate Health and Safety Officer within 24 hours.",
+"Complete appropriate form(s); see Appendix A of the Corporate Health and Safety Program.",
+
+"ACKNOWLEDGEMENT AND SIGNATURE",
+
+"I acknowledge that I have read the SSHSP for the " +
+form.jobName.value + " and that I understand the job hazards and safe job practices summarized on the JSA.   I have met with the PM to discuss the project details and any questions I have related to my personal safety.  I also acknowledge that I have read the Corporate Health and Safety Program documents for other Health and Safety information.",
+
+"Printed Name:  ___________________________________________",
+"Signature:  ___________________________________________",
+"Date:  ___________________________________________",
+
+"SHANNON & WILSON, INC",
+form.dateToday.value,
+form.jobNumber.value,
+"PAGE #/#"
+];
