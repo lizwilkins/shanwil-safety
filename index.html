@@ -312,11 +312,30 @@ function marginFromLeft (doc, totalWidth, fontSize, inputString) {
   var txtWidth = doc.getStringUnitWidth (inputString) * fontSize/doc.internal.scaleFactor;
   return ((totalWidth - txtWidth)/2);
 }
-function printHeader (doc, totalWidth, fontSize, textHeader) {
-  var txtWidth = doc.getStringUnitWidth (textHeader) * fontSize/doc.internal.scaleFactor;
+/*function insertPage1 (doc, header, page, job, today) {
+  doc.text (15, 285, today);
+  doc.text (60, 285, page);
+  doc.text (100, 285, number);
+  doc.addPage();
   doc.setTextColor(150);
-  doc.text ((totalWidth - txtWidth + 40), 10, textHeader);
+  doc.text (100, 10, header);
   doc.setTextColor(0);
+}*/
+
+function printHeader (doc) {
+  doc.setTextColor(150);
+  doc.text (140, 10, "SHANNON & WILSON, INC.");
+  doc.setTextColor(0);
+}
+function printFooter (doc, pagenumber) {
+  doc.text (15, 285, "01/10/2010");
+  doc.text (100, 285, "Page " + pagenumber);
+  doc.text (165, 285, "21-1-21400-059");
+}
+function insertPage (doc, pagenumber) {
+  printFooter (doc, pagenumber);
+  doc.addPage();
+  printHeader (doc);
 }
 
 function generateHSP (form) {
@@ -331,16 +350,14 @@ function generateHSP (form) {
   var totalLength = 270;
   var footerLeft = 15;
   var footerTop = 285;
+  var pageNumber = 0;
 
   var doc = new jsPDF();
   doc.setFontSize (fontSize);
 
   textHeader = "SHANNON & WILSON, INC.";
-  textFooter = form.dateToday.value + "                                               " +
-  "PAGE #/#                                              " +
-  form.jobNumber.value;
   textTitle = [
-"SITE-SPECIFIC HEALTH AND SAFETY",
+"SITE-SPECIFIC HEALTH AND SAFETY PLAN",
 form.jobName.value,
 form.fieldLocation.value,
 "This Health and Safety Plan is to be used in conjunction",
@@ -498,20 +515,20 @@ training = /* [ID, checkBoxId, description] */
  [8,  "training8",  "HAZMAT certification"]
 ];
 
-  printHeader(doc, totalWidth, fontSize, textHeader);
+  printHeader(doc);
 
-  for (var i8 in textTitle)
+  for (var i1 in textTitle)
   {
-    doc.text (horizontalOffset + (marginFromLeft (doc, totalWidth, fontSize, textTitle[i8])), verticalOffset, textTitle[i8]);
+    doc.text (horizontalOffset + (marginFromLeft (doc, totalWidth, fontSize, textTitle[i1])), verticalOffset, textTitle[i1]);
     verticalOffset += 5;
   }
 
-  for (var i in text1)
+  for (var i2 in text1)
   {
-    splitTitle = doc.splitTextToSize (text1[i], totalWidth);
-    for (var j in splitTitle)
+    splitTitle = doc.splitTextToSize (text1[i2], totalWidth);
+    for (var j2 in splitTitle)
     {
-      doc.text (horizontalOffset, verticalOffset, splitTitle[j]);
+      doc.text (horizontalOffset, verticalOffset, splitTitle[j2]);
       verticalOffset += 5;
       if (verticalOffset >= totalLength)
       {
@@ -520,16 +537,15 @@ training = /* [ID, checkBoxId, description] */
       }
     }
   }
-  doc.text (footerLeft, footerTop, textFooter);
-  doc.addPage();
-  printHeader(doc, totalWidth, fontSize, textHeader);
+  pageNumber += 1;
+  insertPage (doc, pageNumber);
   verticalOffset = 20;
-  for (var ii in text2)
+  for (var i3 in text2)
   {
-    splitTitle = doc.splitTextToSize (text2[ii], totalWidth);
-    for (var jj in splitTitle)
+    splitTitle = doc.splitTextToSize (text2[i3], totalWidth);
+    for (var j3 in splitTitle)
     {
-      doc.text (horizontalOffset, verticalOffset, splitTitle[jj]);
+      doc.text (horizontalOffset, verticalOffset, splitTitle[j3]);
       verticalOffset += 5;
       if (verticalOffset >= totalLength)
       {
@@ -615,9 +631,9 @@ training = /* [ID, checkBoxId, description] */
   if (form.equipment6.checked)  {text += equipment[5][2] + ", ";}
   if (form.equipment7.checked)  {text += equipment[6][2] + ", ";}
   splitTitle = doc.splitTextToSize (text, totalWidth);
-  for (var iii in splitTitle)
+  for (var i4 in splitTitle)
   {
-    doc.text (horizontalOffset, verticalOffset, splitTitle[iii]);
+    doc.text (horizontalOffset, verticalOffset, splitTitle[i4]);
     verticalOffset += 5;
     if (verticalOffset >= totalLength)
     {
@@ -625,34 +641,32 @@ training = /* [ID, checkBoxId, description] */
       verticalOffset = 20;
     }
   }
-  doc.text (footerLeft, footerTop, textFooter);
-  doc.addPage();
-  printHeader(doc, totalWidth, fontSize, textHeader);
+  pageNumber += 1;
+  insertPage (doc, pageNumber);
   verticalOffset = 20;
-  for (var iiii in text3)
+  for (var i5 in text3)
   {
-    doc.text (horizontalOffset + (marginFromLeft (doc, totalWidth, fontSize, text3[iiii])), verticalOffset, text3[iiii]);
+    doc.text (horizontalOffset + (marginFromLeft (doc, totalWidth, fontSize, text3[i5])), verticalOffset, text3[i5]);
     verticalOffset += 5;
   }
 
   doc.addImage(imgData, 'JPEG', horizontalOffset + 20, verticalOffset, 120, 120);
   verticalOffset += 125;
 
-  for (var iiiii in text4)
+  for (var i6 in text4)
   {
-    doc.text (horizontalOffset + (marginFromLeft (doc, totalWidth, fontSize, text4[iiiii])), verticalOffset, text4[iiiii]);
+    doc.text (horizontalOffset + (marginFromLeft (doc, totalWidth, fontSize, text4[i6])), verticalOffset, text4[i6]);
     verticalOffset += 5;
   }
-  doc.text (footerLeft, footerTop, textFooter);
-  doc.addPage();
-  printHeader(doc, totalWidth, fontSize, textHeader);
+  pageNumber += 1;
+  insertPage (doc, pageNumber);
   verticalOffset = 20;
-  for (var iiiiii in text5)
+  for (var i7 in text5)
   {
-    splitTitle = doc.splitTextToSize (text5[iiiiii], totalWidth);
-    for (var jjjjjj in splitTitle)
+    splitTitle = doc.splitTextToSize (text5[i7], totalWidth);
+    for (var j7 in splitTitle)
     {
-      doc.text (horizontalOffset, verticalOffset, splitTitle[jjjjjj]);
+      doc.text (horizontalOffset, verticalOffset, splitTitle[j7]);
       verticalOffset += 5;
       if (verticalOffset >= totalLength)
       {
@@ -661,8 +675,8 @@ training = /* [ID, checkBoxId, description] */
       }
     }
   }
-    doc.text (footerLeft, footerTop, textFooter);
-    doc.save('Test.pdf');
+  printFooter (doc, pageNumber);
+  doc.save('Test.pdf');
 }
 /*var pdf = new jsPDF('p', 'pt', 'letter');
     pdf.text( 'This text is normally\raligned.', 140, 50 );
