@@ -316,7 +316,9 @@ function marginFromLeft (doc, totalWidth, fontSize, inputString) {
   doc.text (15, 285, today);
   doc.text (60, 285, page);
   doc.text (100, 285, number);
-  doc.addPage();
+    pageNumber += 1;
+  insertPage (doc, pageNumber, form.dateToday.value, form.jobNumber.value);
+
   doc.setTextColor(150);
   doc.text (100, 10, header);
   doc.setTextColor(0);
@@ -356,6 +358,7 @@ function generateHSP (form) {
   doc.setFontSize (fontSize);
 
   textHeader = "SHANNON & WILSON, INC.";
+
   textTitle = [
 "SITE-SPECIFIC HEALTH AND SAFETY PLAN",
 form.jobName.value,
@@ -365,7 +368,7 @@ form.fieldLocation.value,
 ];
 
   text1 = [
-"\nINTRODUCTION",
+"\n\nINTRODUCTION",
 "\nThis Site-specific Health & Safety Plan (SSHSP) has been prepared for Shannon & Wilson personnel performing project-specific activities for the " +
 form.jobName.value + " in " + form.fieldLocation.value +
 ".  This plan provides a Job Safety Analysis (JSA) specific to the site and the work to be performed during the project.  All field personnel must understand the JSA before going to the site.  Acknowledgement that personnel are aware of this SSHSP and the JSA will be documented by signing the Acknowledgement Form included on the back of this document.  ",
@@ -382,7 +385,8 @@ form.fieldStart.value + " to " + form.fieldEnd.value + ".",
 "\nJOB HAZARD ANALYSIS",
 "\nPhysical hazards associated with this project are summarized on a JSA worksheet, presented on the following pages. The JSA lists the physical hazards by activity and the safe job practices (engineering, administrative, and personal controls) that should be undertaken to minimize these hazards."
 ];
-text2 = [
+
+  text2 = [
 "\nJOB SAFETY ANALYSIS WORKSHEET      <<S&W logo image>>",
 "\nProject Number:  " + form.jobNumber.value,
 "Project Title:  " + form.jobName.value,
@@ -397,16 +401,19 @@ text2 = [
 "Field Start Date:  " + form.fieldStart.value,
 "Field End Date:  " + form.fieldEnd.value
 ];
-text3 = [
+
+  text3 = [
 "MAP TO HOSPITAL",
 form.hospitalName.value,
 form.hospitalAddress.value
 ];
-text4 = [
+
+  text4 = [
 "IN CASE OF EMERGENCY - CALL 911",
 "(see next page for 911 call procedures)"
 ];
-text5 = [
+
+  text5 = [
 "\n911 CALL PROCEDURES",
 "\nIn an EMERGENCY, call 911 as soon as possible.  Give the following information to the 911 dispatcher:",
 "\n-WHERE the emergency is - use addresses, cross streets, or landmarks.",
@@ -425,17 +432,19 @@ text5 = [
 "\nACKNOWLEDGEMENT AND SIGNATURE",
 "I acknowledge that I have read the SSHSP for the " +
 form.jobNumber.value + " and that I understand the job hazards and safe job practices summarized on the JSA.   I have met with the PM to discuss the project details and any questions I have related to my personal safety.  I also acknowledge that I have read the Corporate Health and Safety Program documents for other Health and Safety information.",
-"\nPrinted Name:  ___________________________________________",
-"Signature:  ___________________________________________",
-"Date:  ___________________________________________"
+"\nPrinted Name:  ______________________________________________",
+"\nSignature:  ___________________________________________________",
+"\nDate:  ________________________________________________________"
 ];
-travel = /* [ID, checkBoxId, description] */
+
+  travel = /* [ID, checkBoxId, description] */
 [[1, "travel1", "by car/truck on paved roads/highways"],
  [2, "travel2", "by truck on off‐road trails"],
  [3, "travel3", "by truck on off‐road trails"],
  [4, "travel4", "by boat overwater"]
 ];
-condition = /* [ID, checkBoxId, description] */
+
+  condition = /* [ID, checkBoxId, description] */
 [[1, "condition1", "normal working hours (less than 10-hr shift)"],
  [2, "condition2", "hot weather"],
  [3, "condition3", "night- or low‐light hours"],
@@ -443,7 +452,8 @@ condition = /* [ID, checkBoxId, description] */
  [5, "condition5", "extended hours (>10 hr shift)"],
  [6, "condition6", "storm/lightning potential"]
 ];
-onLocation = /* [ID, checkBoxId, description] */
+
+  onLocation = /* [ID, checkBoxId, description] */
 [[1,  "onLocation1",  "on a major highway"],
  [2,  "onLocation2",  "on a construction site"],
  [3,  "onLocation3",  "on a city street"],
@@ -457,14 +467,16 @@ onLocation = /* [ID, checkBoxId, description] */
  [11, "onLocation11", "near public activities"],
  [12, "onLocation12", "confined space"]
 ];
-activity = /* [ID, checkBoxId, description] */
+
+  activity = /* [ID, checkBoxId, description] */
 [[1,  "activity1",  "field observation of borings/cores"],
  [2,  "activity2",  "field reconnaissance"],
  [3,  "activity3",  "field observation of test pits/excavations"],
  [4,  "activity4",  "heavy lifting"],
  [5,  "activity5",  "construction observation (describe):"]
 ];
-equipment = /* [ID, checkBoxId, description] */
+
+  equipment = /* [ID, checkBoxId, description] */
 [[1,  "equipment1",  "hand‐operated, gas- or diesel‐powered tools"],
  [2,  "equipment2",  "ladders"],
  [3,  "equipment3",  "hand‐operated electrical tools"],
@@ -473,13 +485,15 @@ equipment = /* [ID, checkBoxId, description] */
  [6,  "equipment6",  "explosives"],
  [7,  "equipment7",  "nuclear densometer"]
 ];
-permit = /* [ID, checkBoxId, description] */
+
+  permit = /* [ID, checkBoxId, description] */
 [[1,  "permit1",  "site‐specific, health-and-safety plan"],
  [2,  "permit2",  "confined-space entry permit"],
  [3,  "permit3",  "traffic-control plan"],
  [4,  "permit4",  "railroad occupancy permit"]
 ];
-safety = /* [ID, checkBoxId, description] */
+
+  safety = /* [ID, checkBoxId, description] */
 [[1,  "safety1",  "first-aid kit"],
  [2,  "safety2",  "fire estinguisher"],
  [3,  "safety3",  "vehicles"],
@@ -489,7 +503,8 @@ safety = /* [ID, checkBoxId, description] */
  [7,  "safety7",  "explosion meter"],
  [8,  "safety8",  "cell phone"]
 ];
-ppe = /* [ID, checkBoxId, description] */
+
+  ppe = /* [ID, checkBoxId, description] */
 [[1,  "ppe1",  "hard hat"],
  [2,  "ppe2",  "high-visibility vest"],
  [3,  "ppe3",  "safety glasses"],
@@ -504,7 +519,8 @@ ppe = /* [ID, checkBoxId, description] */
  [12, "ppe12", "nitrile gloves"],
  [13, "ppe13", "respirator"]
 ];
-training = /* [ID, checkBoxId, description] */
+
+  training = /* [ID, checkBoxId, description] */
 [[1,  "training1",  "first aid/CPR"],
  [2,  "training2",  "confined-space entry"],
  [3,  "training3",  "railroad safety training"],
@@ -532,7 +548,8 @@ training = /* [ID, checkBoxId, description] */
       verticalOffset += 5;
       if (verticalOffset >= totalLength)
       {
-        doc.addPage();
+        pageNumber += 1;
+        insertPage (doc, pageNumber, form.dateToday.value, form.jobNumber.value);
         verticalOffset = 20;
       }
     }
@@ -549,7 +566,8 @@ training = /* [ID, checkBoxId, description] */
       verticalOffset += 5;
       if (verticalOffset >= totalLength)
       {
-        doc.addPage();
+        pageNumber += 1;
+        insertPage (doc, pageNumber, form.dateToday.value, form.jobNumber.value);
         verticalOffset = 20;
       }
     }
@@ -637,7 +655,8 @@ training = /* [ID, checkBoxId, description] */
     verticalOffset += 5;
     if (verticalOffset >= totalLength)
     {
-      doc.addPage();
+      pageNumber += 1;
+      insertPage (doc, pageNumber, form.dateToday.value, form.jobNumber.value);
       verticalOffset = 20;
     }
   }
@@ -670,7 +689,8 @@ training = /* [ID, checkBoxId, description] */
       verticalOffset += 5;
       if (verticalOffset >= totalLength)
       {
-        doc.addPage();
+        pageNumber += 1;
+        insertPage (doc, pageNumber, form.dateToday.value, form.jobNumber.value);
         verticalOffset = 20;
       }
     }
