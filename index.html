@@ -327,13 +327,13 @@ function printHeader (doc) {
   doc.text (140, 10, "SHANNON & WILSON, INC.");
   doc.setTextColor(0);
 }
-function printFooter (doc, pagenumber) {
-  doc.text (15, 285, "01/10/2010");
+function printFooter (doc, pagenumber, date, jobnumber) {
+  doc.text (15, 285, date);
   doc.text (100, 285, "Page " + pagenumber);
-  doc.text (165, 285, "21-1-21400-059");
+  doc.text (165, 285, jobnumber);
 }
-function insertPage (doc, pagenumber) {
-  printFooter (doc, pagenumber);
+function insertPage (doc, pagenumber, date, jobnumber) {
+  printFooter (doc, pagenumber, date, jobnumber);
   doc.addPage();
   printHeader (doc);
 }
@@ -538,7 +538,7 @@ training = /* [ID, checkBoxId, description] */
     }
   }
   pageNumber += 1;
-  insertPage (doc, pageNumber);
+  insertPage (doc, pageNumber, form.dateToday.value, form.jobNumber.value);
   verticalOffset = 20;
   for (var i3 in text2)
   {
@@ -642,7 +642,7 @@ training = /* [ID, checkBoxId, description] */
     }
   }
   pageNumber += 1;
-  insertPage (doc, pageNumber);
+  insertPage (doc, pageNumber, form.dateToday.value, form.jobNumber.value);
   verticalOffset = 20;
   for (var i5 in text3)
   {
@@ -659,7 +659,7 @@ training = /* [ID, checkBoxId, description] */
     verticalOffset += 5;
   }
   pageNumber += 1;
-  insertPage (doc, pageNumber);
+  insertPage (doc, pageNumber, form.dateToday.value, form.jobNumber.value);
   verticalOffset = 20;
   for (var i7 in text5)
   {
@@ -675,7 +675,7 @@ training = /* [ID, checkBoxId, description] */
       }
     }
   }
-  printFooter (doc, pageNumber);
+  printFooter (doc, pageNumber, form.dateToday.value, form.jobNumber.value);
   doc.save('Test.pdf');
 }
 /*var pdf = new jsPDF('p', 'pt', 'letter');
