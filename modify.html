@@ -1,0 +1,389 @@
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>S&amp;W Health &amp; Safety</title>
+    <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="css/mods.css" />
+    <script type="text/javascript" src="js/jspdf/jquery/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="js/jspdf/jquery/jquery-ui-1.8.17.custom.min.js"></script>
+    <script type="text/javascript" src="dist/jspdf.debug.js"></script>
+    <script type="text/javascript" src="js/jspdf/basic.js"></script>
+
+    <script src="jspdf.js"></script>
+    <script src="jspdf.plugin.standard_fonts_metrics.js"></script>
+    <script src="jspdf.plugin.split_text_to_size.js"></script>
+    <script src="jspdf.plugin.from_html.js"></script>
+
+    <script src="dist/jspdf.min.js"></script>
+    <script src="js/vendor/jspdf.plugin.autotable.js"></script>
+
+    <script src="js/vendor/modernizr.js"></script>
+  </head>
+  <body>
+
+  <div>
+
+<script>
+function modifyFormFields (form) {
+
+  textHeader = "SHANNON & WILSON, INC.";
+
+  textTitle = [
+    "SITE-SPECIFIC HEALTH AND SAFETY PLAN",
+    form.jobName.value,
+    form.fieldLocation.value,
+    "This Health and Safety Plan is to be used in conjunction",
+    "with Shannon & Wilson's Corporate Health and Safety Program"
+  ];
+
+  textIntroduction = [
+    "INTRODUCTION",
+    "\nThis Site-specific Health & Safety Plan (SSHSP) has been prepared for Shannon & Wilson personnel performing project-specific activities for the " +
+    form.jobName.value + " in " + form.fieldLocation.value +
+    ".  This plan provides a Job Safety Analysis (JSA) specific to the site and the work to be performed during the project.  All field personnel must understand the JSA before going to the site.  Acknowledgement that personnel are aware of this SSHSP and the JSA will be documented by signing the Acknowledgement Form included on the back of this document.  ",
+    "\nField activities to be performed under this SSHSP include the following: " +
+    form.fieldActivity.value +
+    ".  If field activities other than those noted are performed, this document should be revised. The field activities are anticipated to extend from " +
+    form.fieldStart.value + " to " + form.fieldEnd.value + ".",
+    "\nORGANIZATION",
+    "\nShannon & Wilson expects its employees to follow the policies and procedures set forth in the Corporate Health and Safety plan and the specific guidelines included in this SSHSP. Employees at all level of organization are covered by this requirement. In certain cases, deviations to a policy or procedure may be appropriate, but any changes must bye justifiable and documented. Changes in this program will only be made with the prior approval of the Site Safety Officer (SSO).",
+    "\nThe goal on this project, as on all Shannon & Wilson projects, is to experience zero injuries and to remain in compliance with applicable federal, state, and local health and safety requirements.  Personnel accountable for employee's safety and health on this project include the Project Manager (PM), the SSO, and the Health and Safety Officer (HSO). The names and contact numbers for these key personnel for this project are listed below."
+  ];
+
+  textPersonnel = [
+    ["Project Manager:  ", form.pmName.value, form.pmPhone.value],
+    ["Site Safety Officer:  ", form.ssoName.value, form.ssoPhone.value],
+    ["Health & Safety Officer:  ", form.hsoName.value, form.hsoPhone.value]
+  ];
+
+  textJSAParagraph = [
+    "JOB HAZARD ANALYSIS",
+    "\nPhysical hazards associated with this project are summarized on the attached JSA worksheet. The JSA lists the physical hazards by activity and the safe job practices (engineering, administrative, and personal controls) that should be undertaken to minimize these hazards."
+  ];
+
+  textJSAForm1 = [
+    "\nProject Number:  " + form.jobNumber.value,
+    "\nProject Title:\n" + form.jobName.value,
+    "\nProject Location:  " + form.fieldLocation.value,
+    "\nBrief Description of Field Activities:\n" + form.fieldActivity.value
+  ];
+
+  textJSAForm2 = [
+    "\nPrepared By:  " + form.preparerName.value,
+    "Reviewed By:  " + form.reviewerName.value,
+    "Date:  " + form.dateToday.value,
+    "\nProject Mngr:  " + form.pmName.value,
+    "Site Safety:  " + form.ssoName.value,
+    "Field Staff:  " + form.fieldStaff.value,
+    "Field Start Date:  " + form.fieldStart.value,
+    "Field End Date:  " + form.fieldEnd.value
+  ];
+
+textJSAFormFields = [
+    "Required PPE",
+    "Required Training",
+    "Safety Equipment",
+    "Req'd Plans/\nPermits",
+    "Travel",
+    "Working Conditions",
+    "Location",
+    "Field Activities",
+    "Field Equipment",
+    "Equipment Training/\nInspection"
+  ];
+
+  textJSAFormHeadings = [
+    ["Tasks", "Identify the work activities and steps"],
+    ["Potential Hazards", "Analyze each work activity for potential hazards"],
+    ["Safe Job Practices", "Develop specific engineering, administrative, and personal controls for potential hazards for each work activity."],
+    ["Equipment to be Used", "List equipment to be used in the work activity"],
+    ["Inspection Requirements", "List inspection requirements for the equipment"],
+    ["Training Requirements", "List training requirements for the equipment"]
+  ];
+
+ textFieldEquipmentHeading = [
+    "FIELD EQUIPMENT"
+  ];
+
+ textSafetyEquipmentHeading = [
+    "SAFETY EQUIPMENT"
+  ];
+
+  textHospitalMapHeading = [
+    "MAP TO HOSPITAL",
+    form.hospitalName.value,
+    form.hospitalAddress.value
+  ];
+
+  textHospitalMapSubheading = [
+    "IN CASE OF EMERGENCY - CALL 911",
+    " (see next page for 911 call procedures)"
+  ];
+
+  text911Paragraph = [
+    "\n911 CALL PROCEDURES",
+    "\nIn an EMERGENCY, call 911 as soon as possible.",
+    "\nGive the following information to the 911 dispatcher:",
+    "\n-WHERE the emergency is - use addresses, cross streets, or landmarks.",
+    "-TELEPHONE NUMBER you are calling from.",
+    "-WHAT HAPPENED - type of emergency.",
+    "-HOW MANY people need help?",
+    "-HOW MUCH was spilled (if applicable)?",
+    "-WHAT is being done?",
+    "\nYOU HANG UP LAST - Let the person you called hang up first.",
+    "\nIn the event of a MEDICAL EMERGENCY, do the following:",
+    "\n1. Call for help as soon as possible. Assess whether the scene is safe.  If it is, help; if it is not, DO NOT BECOME ANOTHER VICTIM.",
+    "2. Administer CPR and emergency first aid if necessary.",
+    "3. If the victim can be moved, transport to the hospital while one person calls the hospital to notify them.  If the injury or exposure is not life threatening, decontaminate the individual first.  If decontamination is not feasible, wrap the individual in a blanket or sheet of plastic prior to transport; transport to the hospital via rescue squad vehicle.",
+    "4. Notify the PM and the HSO.  If Shannon & Wilson staff are involved in the incident, the HSO will notify the Corporate Health and Safety Officer within 24 hours.",
+    "5. Complete appropriate form (s); see Appendix A of the Corporate Health and Safety Program.",
+    "\nACKNOWLEDGEMENT AND SIGNATURE",
+    "\nI acknowledge that I have read the SSHSP for the " +
+    form.jobNumber.value + " and that I understand the job hazards and safe job practices summarized on the JSA.   I have met with the PM to discuss the project details and any questions I have related to my personal safety.  I also acknowledge that I have read the Corporate Health and Safety Program documents for other Health and Safety information.",
+    "\nPrinted Name:  ______________________________________________  ",
+    "\nSignature:     _______________________________________________  Date:  __________",
+    "\nPM Printed Name:  ___________________________________________  ",
+    "\nPM Signature:     ____________________________________________  Date:  __________"
+  ];
+
+  safetyEquipmentHeadings = [
+    "Safety Equipment to be\nused in work activity",
+    "Inspection Requirements\nfor equipment",
+    "Training Requirements for equipment"
+  ];
+
+  fieldEquipmentHeadings = [
+    "Field Equipment to be\nused in work activity",
+    "Potential Equipment Hazards",
+    "Safe Job Practices\nDevelop specific engineering, administrative, and\npersonal controls for potential hazards."
+  ];
+
+  hazardControlHeadings = [
+    "Tasks\nIdentify the work\nactivities and steps",
+    "Potential Hazards\nAnalyze each work activity\nfor potential hazards",
+    "Safe Job Practices\nDevelop specific engineering, administrative, and\npersonal controls for potential hazards for each\nwork activity."
+  ];
+
+  travel = [   // [ID, checkBoxId, description]
+    [1, "travel1", "by car/truck on paved roads/highways"],
+    [2, "travel2", "by car/truck on single\-lane/unpaved highways"],
+    [3, "travel3", "by truck on off\‐road trails"],
+    [4, "travel4", "by boat overwater"]
+  ];
+
+  condition = [   // [ID, checkBoxId, description]
+    [1, "condition1", "normal working hours (less than 10\-hr shift)"],
+    [2, "condition2", "hot weather"],
+    [3, "condition3", "night or low\-light hours"],
+    [4, "condition4", "cold weather"],
+    [5, "condition5", "extended hours (>10 hr shift)"],
+    [6, "condition6", "storm/lightning potential"]
+  ];
+
+  onLocation = [   // [ID, checkBoxId, description]
+    [1,  "onLocation1",  "on a major highway"],
+    [2,  "onLocation2",  "on a construction site"],
+    [3,  "onLocation3",  "on a city street"],
+    [4,  "onLocation4",  "on a slope/uneven ground"],
+    [5,  "onLocation5",  "on a street shoulder or sidewalk"],
+    [6,  "onLocation6",  "in a landslide area"],
+    [7,  "onLocation7",  "on or within 50 feet of railways"],
+    [8,  "onLocation8",  "over water"],
+    [9,  "onLocation9",  "in a remote area"],
+    [10, "onLocation10", "indoors"],
+    [11, "onLocation11", "near public activities"],
+    [12, "onLocation12", "confined space"]
+  ];
+
+  activity = [  // [ID, checkBoxId, description]
+    [1,  "activity1",  "field observation of borings/cores"],
+    [2,  "activity2",  "field reconnaissance"],
+    [3,  "activity3",  "field observation of test pits/excavations"],
+    [4,  "activity4",  "heavy lifting"],
+    [5,  "activity5",  "construction observation:"]
+  ];
+
+  equipment = [    // [ID, checkBoxId, description, inspection, training, [hazardList[hazardControlList]]
+    [1,  "equipment1",  ["photo\-ionization detector (PID)"], ["Calibration to fresh air and 100 ppm Isobutylene."], ["\nFamiliarity with breathing zone (BZ) sustained (1 minute) action levels (change from Level D to Level C, or apply engineering controls [ventilation], or evacuate).  If gasoline is suspected, &5 ppm in BZ.  If solvents are suspected, &21 ppm in BZ."], [[[""], [[""]]]]],
+    [2,  "equipment2",  ["hand\-operated electrical tools"], [""], [""], [[["Electrocution"], [[""]]], [["Electrocution, loss of control"], [[""]]], [["Loss of control, slips, trips, falls"], [[""]]]]],
+    [3,  "equipment3",  ["high\-pressure tools (air, water)"], [""], [""], [[["Bruises, eye injury, loss of control"], [["1. Confirm that hoses, safety connections, and other components are connected and in good condition."]]]]],
+    [4,  "equipment4",  ["fueling of power tools"], [""], [""], [[["Fire, explosion, burns"], [["1. Do not fuel equipment while running hot or near flame."], ["2. Keep fuel containers at least 10 feet away from running and/or hot equipment."]]]]],
+    [5,  "equipment5",  ["explosives"], [""], [""], [[["Uncontrolled explosion"], [["1. Only authorized and qualified personnel will use explosives."]]], [["Fire, explosion, burns"], [["1. No smoking, firearms, matches, or open flames near explosives."], ["2. No smoking, firearms, matches, or open flames near explosives."]]]]],
+    [6,  "equipment6",  ["hoists or lifts"], [""], [""], [[["Falls"], [["1. Develop and follow a site-specific fall protection plan."], ["2. Follow manufacturer's recommendations for use."], ["3. Wear appropriate fall protection."], ["4. Do not work alone."], ["5. Make sure bottom of lift is protected from outside impacts."]]]]],
+    [7,  "equipment7",  ["electrical cords"], [""], [""] ,[[["Electrocution"], [["1. Make sure electrical cords are in good condition with no exposed wires."], ["2. Confirm that electrical cords and plugs are not wet or submerged in water."]]], [["Electrocution, loss of control"], [["1. Make sure tool is off when plugging and unplugging electrical cords."]]], [["Loss of control, slips, trips, falls"], [["1. Make sure electrical cords are secured or routed so that equipment and personnel do not snag cords."]]]]],
+    [8,  "equipment8",  ["ladders"], [""], [""], [[["Falling from a ladder or slipping at the bottom or top of ladder"], [["1. Do not tie multiple ladders together."], ["2. Do not load ladders beyond maximum design load."], ["3. Place ladders on stable and level surfaces."], ["4. Secure ladders to prevent shifting or disturbance."], ["5. Do not set extension ladders steeper than 4 vertical to 1 horizontal."], ["6. Extend ladders at least 3 feet above upper landing."], ["7. Make sure ladder is in good operating condition."], ["8. Keep area around top of ladder clear."]]], [["Cuts, abrasions, falls"], [["1. Hoist equipment on separate lines or in belts/pockets (not in hands)."]]]]],
+    [9,  "equipment9",  ["nuclear densometer"], [""], [""], [[["Damage to, or loss of, gauge"], [["1. Keep Gauge Shipping Paper and Emergency Response information in your transport vehicle."], ["2. Secure gauge to vehicle during transport or when not in use."], ["3. If the gauge will be on site for an extended period, secure gauge in a storage locker when not being used."], ["4. Keep gauge out of the path of equipment and in sight at all times when in use."]]], [["Unnecessary exposure to radiation"], [["1. Keep gauge at least 15 feet away from you when not in use."], ["2. Do not touch rod as it is extracted."], ["3. Point rod away from you when extracting and inserting into test hole."]]]]],
+    [10, "equipment10", ["hand\-operated, gas\-/diesel\-powered tools"], [""], [""], [[["Eye injury"], [["1. Wear protective goggles or face mask when using tools."]]], [["Cuts and abrasions, hearing loss"], [["1. Wear appropriate PPE (see top of form) including earplugs and gloves."], ["2. Do not wear loose clothing when operating tools."]]], [["Injury due to kickback or loss of control"], [["1. Use two hands when operating tool and maintain stable stance.  Do not operate tool while moving."], ["2. Make sure material being operated on is secured."]]], [["Slips, trips, falls during operation"], [["1. Clear away brush, vegetation, or other materials that might interfere with safe operation of tool."]]], [["Injury from improper operation of tool"], [["1. Obtain training in use of tool.  Follow manufacter's recommendations for use."]]], [["Injury from equipment malfunction"], [["1. Make sure tool is in good condition before using.  Report broken or malfunctioning equipment."]]]]]
+  ];
+
+  permit = [   // [ID, checkBoxId, description]
+    [1,  "permit1",  ["site\-specific health\-and\-safety plan"]],
+    [2,  "permit2",  ["confined\-space entry permit"]],
+    [3,  "permit3",  ["traffic\-control plan (drilling)"]],
+    [4,  "permit4",  ["railroad occupancy permit"]],
+    [5,  "permit5",  ["Seattle Traffic Control Manual (STCM)"]],
+    [6,  "permit6",  ["MUTCD (instrumentation monitoring)"]]
+  ];
+
+  safety = [   // [ID, checkBoxId, description, inspection, training]
+    [1, "safety1",   ["first\-aid kit"], ["1. Check to make sure kit is complete prior to use at site.\n2. Replace used or outdated items."], ["1. Current First Aid certification is required for all S&W employees but use of first aid kit is permitted for anyone."]],
+    [2, "safety2",   ["fire estinguisher"], ["1. Monthly inspection by S&W and yearly professional inspection.\n2. Check to make sure the inspection tag is not expired."], ["1. Fire extinguisher use training preferred, but use of fire extinguisher is permitted for anyone in an emergency."]],
+    [3, "safety3",   ["vehicles"], ["1. Routine inspection by S&W so that vehicles meet the requirements for safe operation on roads.\n2. Seat belts shall be in good working order with no visible damage or alterations."], ["1. Valid driver's license."]],
+    [4, "safety4",   ["photo\-ionization detector (PID)"], ["1. Daily calibration or calibration check."], ["1. Read manual or direct training by S&W staff."]],
+    [5, "safety5",   ["personal protective equipment (PPE)"], ["1. PPE shall be in good working order with no visible damage or alterations."], [""]],
+    [6, "safety6",   ["handheld GPS or other navigation equipment"], [" "], [" "]],
+    [7, "safety7",   ["explosion meter"], [" "], [" "]],
+    [8, "safety8",   ["cell phone"], [" "], [" "]],
+    [9, "safety9",   ["ring buoys (over\-water work)"], [" "], [" "]],
+    [10, "safety10", ["traffic control (spotter, flagger, delineators, sign[s], and/or light on vehicle, as appropriate)"], [" "], [" "]]
+  ];
+
+  ppe = [   // [ID, checkBoxId, description]
+    [1,  "ppe1",  "hard hat"],
+    [2,  "ppe2",  "high\-visibility vest"],
+    [3,  "ppe3",  "safety glasses"],
+    [4,  "ppe4",  "safety\-toe boots"],
+    [5,  "ppe5",  "ear plugs"],
+    [6,  "ppe6",  "ear muffs"],
+    [7,  "ppe7",  "work gloves"],
+    [8,  "ppe8",  "personal flotation device (work over or near water)"],
+    [9,  "ppe9",  "ropes/harness (fall protection)"],
+    [10, "ppe10", "dosimetry badge"],
+    [11, "ppe11", "tyvek clothing"],
+    [12, "ppe12", "nitrile gloves"],
+    [13, "ppe13", "respirator"]
+  ];
+
+  training = [   // [ID, checkBoxId, description]
+    [1,  "training1",  "first aid/CPR"],
+    [2,  "training2",  "confined\-space entry"],
+    [3,  "training3",  "railroad safety training"],
+    [4,  "training4",  "40\-hour HAZWOPER"],
+    [5,  "training5",  "contractor safety training"],
+    [6,  "training6",  "certified drilling license"],
+    [7,  "training7",  "nuclear\-gauge safety training"],
+    [8,  "training8",  "HAZMAT certification"]
+  ];
+
+  tasks = [    // [ID, checkBoxId, description, [hazardList[hazardControlList]]
+    [1,  "task1",  ["Travel to and from site"]],
+    [2,  "task2",  ["General work on site"]],
+    [3,  "task3",  ["Working in low\-light conditions"]],
+    [4,  "task4",  ["Working extended hours"]],
+    [5,  "task5",  ["Working in hot weather"]],
+    [6,  "task6",  ["Working in cold weather"]],
+    [7,  "task7",  ["Working in areas with potential storms and/or lightning"]],
+    [8,  "task8",  ["Walking around site"]],
+    [9,  "task9",  ["Working on a highway"]],
+    [10, "task10", ["Working on a city street (blocking traffic)"]],
+    [11, "task11", ["Working on a street shoulder or sidewalk"]],
+    [12, "task12", ["Working on or near railroads (within 50 feet of track CL)"]],
+    [13, "task13", ["Working in a remote area"]],
+    [14, "task14", ["Working on a construction site"]],
+    [15, "task15", ["Working on a slope and/or uneven ground"]],
+    [16, "task16", ["Working in a landslide area"]],
+    [17, "task17", ["Working overwater from a barge/boat"]],
+    [18, "task18", ["Working inside a building or structure"]],
+    [19, "task19", ["Working near public activities"]],
+    [20, "task20", ["Working in a confined space"]],
+    [21, "task21", ["Position drill rig"]],
+    [22, "task22", ["Position excavator"]],
+    [23, "task23", ["Observe drilling/coring activities"]],
+    [24, "task24", ["Observe and log test pit excavations"]],
+    [25, "task25", ["Performing field reconnaissance"]],
+    [26, "task26", ["Lifting of samples or other heavy items"]]
+  ];
+
+  hazards = [    // [hazardID. taskID, ???, hazardCategory, hazard, hazardControlDescriptionList
+    [1,  1, ["travel"],     ["All"],                 [["Vehicle breakdown"], [["1. Confirm that vehicle is in good condition before operating."], ["2. Approach trail hazards (stumps, rocks, slopes, etc.) with caution."], ["3. Use a spotter to confirm clearance of trail hazards (stumps, rocks, slopes)."]]]],
+    [2,  1, ["travel"],     ["All"],                 [["Improper operation of vehicle"], [["1. Only S&W employees with a valid drivers license shall operate S&W vehicles."]]]],
+    [3,  1, ["travel"],     ["All"],                 [["Injury due to vehicular accident"], [["1. Confirm that vehicle is in good condition before operating."], ["2. Check that mirrors, seat belts, and controls are adjusted correctly."], ["3. All vehicle occupants shall wear seat belts."], ["4. Do not use cell phone while driving."]]]],
+    [4,  1, ["travel"],     ["All"],                 [["Injury due to shifting equipment or vehicular accident"], [["1. Make sure equipment is secured/tied down in vehicle or in truck/van bed."]]]],
+    [5,  1, ["travel1"],    ["Paved Highways\/Roads"],      [["Injury due to vehicular accident"], [["1. Use defensive driving techniques."], ["2. Obey traffic rules and speed limits."]]]],
+    [6,  1, ["travel2"],    ["Unpaved/single\-lane roads"], [["Injury due to vehicular accident"], [["1. Reduce speed, especially when line-of-sight is limited."], ["2. Use turnouts to allow for passing vehicles"]]]],
+    [7,  1, ["travel3"],    ["Off-road"],            [["Vehicle breakdown"], [["1. Approach trail hazards (stumps, rocks, slopes, etc.) with caution."], ["2. Use a spotter to confirm clearance of trail hazards (stumps, rocks, slopes)."]]]],
+    [8,  1, ["travel3"],    ["Off-road"],            [["Injury due to vehicular accident"], [["1. Approach trail hazards (stumps, rocks, slopes, etc.) with caution."], ["2. Use a spotter to confirm clearance of trail hazards (stumps, rocks, slopes)."]]]],
+    [9,  1, ["travel3"],    ["Off-road"],            [["Loss of bearing (disorientation) due to off-road travel"], [["1. Have GPS or other back-country navigation aids available."]]]],
+    [10, 1, ["travel4"],    ["Boat overwater"],      [["Drowning, hypothermia due to falling overboard or boat sinking"], [["1. Do not operate a boat alone."], ["2. All boat occupants shall wear a USCG-approved personal flotation device (PFD-Type III)."], ["3. Check weather report to confirm safe passage over water (avoid storms)."], ["4. Have a throwable Type IV ring buoy with attached line on board boat."]]]],
+    [11, 1, ["travel4"],    ["Boat overwater"],      [["Slips, trips, falls from boat"], [["1. Take care when exiting and entering boat from land or barge."]]]],
+    [12, 2, ["condition4"], ["Cold weather"],        [["Injury due to vehicular accident"], [["1. Take care when driving on slippery surfaces."], ["2. Use tire chains when necessary."]]]],
+    [13, 2, ["condition"],  ["All"],                 [["Injury from distraction or collision"], [["1. Confirm that you can be seen by traffic, pedestrians, and/or onlookers."]]]],
+    [14, 2, ["condition"],  ["All"],                 [["Dehydration, fatigue, disorientation"], [["1. Stay hydrated and keep your body fueled (eat regularly)."]]]],
+    [15, 2, ["condition"],  ["All"],                 [["Eye or head injury, hearing loss, cuts and abrasions"], [["1. Wear appropriate clothing and required Personal Protective Equipment (see top of form for required PPE)."]]]],
+    [16, 2, ["condition"],  ["All"],                 [["Fatigue, overexertion"], [["1. Take breaks, as necessary."]]]],
+    [17, 3, ["condition3"], ["Night/Low Light"],     [["Injury due to unseen hazards in low light conditions"], [["1. Have appropriate lighting to perform the work."], ["2. Have a portable flashlight or other lighting device to travel beyond lighted areas."], ["3. Be aware of hidden hazards in unlighted areas."]]]],
+    [18, 4, ["condition5"], ["Extended work hours"], [["Lack of awareness and alertness, reduced work performance, injury due to fatigue due to extended work hours"], [["1. Be aware of reduced work performance (mistakes) and signs of fatigue and stop work if necessary."], ["2. Get at least 7 hours of rest in between work periods."]]]],
+    [19, 5, ["condition2"], ["Hot weather"],         [["Heat exhaustion, heat stroke, fatigue, dehydration due to hot weather"], [["1. Be aware of signs of heat exhaustion and heat stroke."], ["2. Adjust work schedules as possible to work in cooler parts of day (rest during hotter parts of day)."], ["2. Establish shaded area or cool shelter nearby for resting."], ["3. Maintain body electrolytes and hydration."]]]],
+    [20, 6, ["condition4"], ["Cold weather"],        [["Frostbite, hypothermia due to cold weather"], [["1. Be aware of signs of frostbite and hypothermia."], ["2. Stay dry.  Wear rain gear and have extra clothing available in case primary clothing gets wet."], ["3. Stay warm.  Wear appropriate layered clothing and footwear."], ["4. Establish a warm shelter area or vehicle nearby to warm up."]]]],
+    [21, 6, ["condition4"], ["Cold weather"],        [["Slips, trips, falls on icy/slippery surfaces"], [["1. Take care when walking on slippery surfaces."]]]],
+    [22, 7, ["condition6"], ["Lightning/Storms"],    [["Exposure, hypothermia due to dangerous storms"], [["1. Check weather report prior to planning work for the day.  Do not work if dangerous storms are predicted."]]]],
+    [23, 7, ["condition6"], ["Lightning/Storms"],    [["Cuts and abrasions, electrocution due to lightning strike"], [["1. When observing lightning, go to a safe place and use 30-30 rule."], ["2. In open areas, seek lowest spot and squat as low as possible."], ["3. Stay away from metal objects."], ["4. Stay away from tall, isolated objects, open fields, or areas where you may be the tallest object."], ["5. Seek shelter in a building or enclosed vehicle.  Do not touch steering wheel, knobs, ignition, or radio."]]]],
+    [24, 8, ["location"],   ["All"],                 [["Sprains, strains, broken bones"], [["1. Wear appropriate foot protection."]]]],
+    [25, 8, ["location"],   ["All"],                 [["Slips, trips, falls"], [["1. Use caution when working on uneven and wet ground surfaces."], ["2. Keep work area clear of debris, tools, and other materials that are not in use."]]]],
+    [26, 9, ["location1"],  ["Highway"],             [["Injury due to vehicle impact"], [["1. Follow approved traffic control plan (copy on site)."], ["2. Confirm that traffic control is in place prior to walking/working on highway."], ["3. Wear appropriate PPE (see top of form) and high visibility clothing as required by traffic control plan and permit."], ["4. Do not move outside traffic control zone or stand in areas where you could be hit by vehicles."], ["5. Finish work promptly to minimize your potential exposure to traffic."]]]],
+    [27, 9, ["location1"],  ["Highway"],             [["Vehicular accidents, slips, trips and falls"], [["1. Keep highway pavement clear of mud, debris, or other materials."], ["2. Make sure site is clean and free of obstructions before you leave."]]]],
+    [28, 10, ["location3"],  ["Street"],              [["Injury due to vehicle impact"], [["1. Follow approved traffic control plan (copy on site)."], ["2. Confirm that traffic control is in place prior to walking/working on street."], ["3. Wear appropriate PPE (see top of form) and high visibility clothing as required by traffic control plan and permit."], ["4. Do not move outside traffic control zone or stand in areas where you could be hit by vehicles."], ["5. Finish work promptly to minimize your potential exposure to traffic."]]]],
+    [29, 10, ["location3"],  ["Street"],              [["Vehicular accidents, slips, trips and falls"], [["1. Keep street pavement clear of mud, debris, or other materials."], ["2. Make sure site is clean and free of obstructions before you leave."]]]],
+    [30, 11, ["location5"],  ["Shoulder/Sidewalk"],   [["Injury due to vehicle impact"], [["1. Make sure traffic control equipment is in place (typically signs and cones)."], ["2. Follow approved traffic control plan and street use permit, if applicable."], ["3. Wear appropriate PPE (see top of form) and high visibility clothing."]]]],
+    [31, 11, ["location5"],  ["Shoulder/Sidewalk"],   [["Vehicular accidents, slips, trips and falls"], [["1. Keep pavement clear of mud, debris, or other materials."], ["2. Make sure site is clean and free of obstructions before you leave."]]]],
+    [32, 12, ["location7"],  ["Railroad"],            [["Injury due to train impact"], [["1. Wear appropriate PPE (see top of form) and high visibility clothing."], ["2. Obtain required railroad safety training and occupancy permit."], ["3. For an oncoming train, face the direction of the train and stay clear."], ["4. Do not step, stand, or sit on top of the rail at any time."]]]],
+    [33, 12, ["location7"],  ["Railroad"],            [["Train derailment, slips, trips, falls"], [["1. Keep rails free from tools, equipment, and debris."]]]],
+    [34, 13, ["location9"],  ["Remote"],              [["Unavailable rapid professional medical response."], [["1. Be prepared with back country first aid techniques and equipment."], ["2. Have appropriate communication and transport to evacuate site and/or obtain medical attention."]]]],
+    [35, 13, ["location9"],  ["Remote"],              [["Exposure, hypothermia"], [["1. Do not wander far away from work area alone."], ["2. Be prepared with survival equipment and shelter."]]]],
+    [36, 13, ["location9"],  ["Remote"],              [[" Allergic reactions, insect, reptile, or mammal bites."], [["1. Be aware of local plant and animal species that may be a hazard (e.g. poisonous plans, insects, snakes)."]]]],
+    [37, 13, ["location9"],  ["Remote"],              [["Exposure, animal attacks"], [["1. Do not wander far away from work area alone."], ["2. Have a nearby shelter to shield from animals, storms, and other hazards."], ["3. Have self defense equipment, as appropriate (e.g., firearms)."]]]],
+    [38, 13, ["location9"],  ["Remote"],              [["Cuts and abrasions, allergic reactions, insect, reptile, or mammal bites, slips, trips and falls"], [["1. Wear long sleeved pants and shirts, sturdy boots, and appropriate PPE (see top of form)."], ["2. Be aware of local hazardous plants, reptiles, insects, and reptiles."]]]],
+    [39, 14, ["location2"],  ["Construction Site"],   [["Injury (hearing loss, abrasions) due to general construction site hazards"], [["1. Attend Contractor's safety orientation and daily safety tailgate meetings."], ["2. Wear appropriate PPE as required by Contractor (see top of form)."], ["3. Do not work in an area that you consider unsafe, regardless of what the Contractor is doing."]]]],
+    [40, 14, ["location2"],  ["Construction Site"],   [["Injury due to equipment, material, or other impact"], [["1. Ask Contractor/operators where you can work/observe safely without interfering with their operations."], ["2. Make sure the Contractor knows where you will be working on the site."], ["3. Get permission from operators and maintain eye contact when moving around working equipment."], ["4. Watch and listen for equipment operating near your work zone."], ["5. Watch for overhead hazards.  Do not work under crane operations."], ["6. Keep clear of moving loads and equipment"]]]],
+    [41, 14, ["location2"],  ["Construction Site"],   [["Injury due to falls, excavation cave in"], [["1. Do not approach excavations without appropriate fall protection equipment in place."]]]],
+    [42, 15, ["location4"],  ["Slope"],               [["Slips, trips, falls"], [["1. Watch out for soft ground areas and/or holes when you are walking."], ["2. Wear appropriate foot and ankle protection."]]]],
+    [43, 15, ["location4"],  ["Slope"],               [["Injury due to slope instability or failures"], [["1. Do not place equipment or materials near the top of existing slopes that may be unstable."]]]],
+    [44, 15, ["location4"],  ["Slope"],               [["Loss of bearing (disorientation)"], [["1. Do not walk alone in ravines, slopes, or other areas where you cannot be seen."]]]],
+    [45, 16, ["location6"],  ["Landslide"],           [["Slips, trips, falls"], [["1. Wear appropriate fall protection or have access to ropes for traversing slopes."], ["2. Stay out of wet and unstable areas."], ["3. Do not work alone."]]]],
+    [46, 16, ["location6"],  ["Landslide"],           [["Injury due to slope instability or failures"], [["1. Be aware of the potential for additional slope instability."]]]],
+    [47, 17, ["location8"],  ["Overwater"],           [["Drowning, exposure, hypothermia"], [["1. Do not work alone."], ["2. Wear a USCG-approved personal flotation device (PFD-Type III)."], ["3. Check weather report to confirm safe working conditions (avoid storms)."], ["4. Stop work if water conditions become hazardous (e.g. high swell, storms, etc.)"], ["5. Have a throwable Type IV ring buoy with attached line available."]]]],
+    [48, 17, ["location8"],  ["Overwater"],           [["Slips, trips, falls"], [["1. Take care when exiting and entering boat from land or barge."]]]],
+    [49, 17, ["location8"],  ["Overwater"],           [["Shifting equipment, sinking, drifting"], [["1. Make sure the barge or boat is securely anchored at the work location."]]]],
+    [50, 18, ["location10"], ["Indoors"],             [["Breathing difficulty, suffocation, disorientation"], [["1. Make sure that equipment is properly ventilated."]]]],
+    [51, 18, ["location10"], ["Indoors"],             [[" Injury due to equipment impact"], [["1. Confirm that equipment operation will not impact ceilings or walls."]]]],
+    [52, 19, ["location11"], ["Public"],              [["Injury to public "], [["1. Be aware of public onlookers.  Make sure they stay outside of work zone."], ["2. Provide safe route for the public around the work area."], ["3. Make sure public is notified of the work (signs, newsletters, handouts)."], ["4. Avoid extended conversations with the public - stay focussed on your work."]]]],
+    [53, 20, ["location12"], ["Confined Space"],      [["Breathing difficulty, suffocation, disorientation"], [["1. Obtained confined space entry training."], ["2. Confirm that confined space is adequately ventilated."], ["3. Monitor oxygen and gas levels with portable meters at regular intervals while performing the work."], ["4. Do not work alone.  Maintain contact with someone outside of the confined space."]]]],
+    [54, 20, ["location12"], ["Confined Space"],      [["Inability to move disabled persons"], [["1. Establish egress plan for emergency removal of personnel (e.g. lifting equipment, lifeline, etc.)."]]]],
+    [55, 21, ["activity1"],  ["Drilling"],            [["Utility damage, explosion, electrocution due to contact with a utility"], [["1. Make sure utilities have been located/marked prior to drilling."], ["2. Provide general boring location information to driller.  Allow driller to select exact location, when possible."], ["3. Check overhead utilities in work area.  Must be at least 10 feet from power lines."], ["4. Do not excavate closer than 10 feet to marked utility lines without hand digging to confirm utility location."], ["5. Check alignment of nearby manhole covers to confirm that they do not line up with exploration location."]]]],
+    [56, 21, ["activity1"],  ["Drilling"],            [["Injury due to shifting or overturning equipment"], [["1. Check to make sure ground is stable in area of equipment."]]]],
+    [57, 21, ["activity1"],  ["Drilling"],            [["Injury due to vehicle impact"], [["1. Check to make sure drill rig is clear of traffic or other adjacent activities."]]]],
+    [58, 21, ["activity1"],  ["Drilling"],            [["Injury due to equipment impact"], [["1. Stay clear of drill rig as it is setting up."]]]],
+    [59, 22, ["activity3"],  ["Test Pits"],           [["Utility damage, explosion, electrocution due to contact with a utility"], [["1. Make sure utilities have been located/marked prior to drilling."], ["2. Check overhead utilities in work area.  Must be at least 10 feet from power lines."], ["3. Do not excavate closer than 10 feet to marked utility lines without hand digging to confirm utility location."], ["4. Check alignment of nearby manhole covers to confirm that they do not line up with exploration location."]]]],
+    [60, 22, ["activity3"],  ["Test Pits"],           [["Injury due to shifting or overturning equipment"], [["1. Check to make sure ground is stable in area of equipment."]]]],
+    [61, 22, ["activity3"],  ["Test Pits"],           [["Injury due to vehicle impact"], [["1. Check to make sure equipment is clear of traffic or other adjacent activities."]]]],
+    [62, 22, ["activity3"],  ["Test Pits"],           [["Injury due to equipment impact"], [["1. Stay clear of excavation equipment as it is setting up."]]]],
+    [63, 23, ["activity1"],  ["Drilling"],            [["Injury due to equipment impact"], [["1. Stay clear of drill rig operating area."], ["2. Agree with driller as to a safe location for soil/core sample inspection."], ["3. Stay clear of drilling equipment when rods/casing is being added/removed."]]]],
+    [64, 23, ["activity1"],  ["Drilling"],            [["Hearing loss"], [["1. Wear appropriate PPE (see top of form), including ear protection."]]]],
+    [65, 23, ["activity1"],  ["Drilling"],            [["Eye injury due to mud/water spray"], [["1. Wear appropriate PPE (see top of form), including eye protection."], ["2. Stay away from back of rig during drill rod breaks."]]]],
+    [66, 23, ["activity1"],  ["Drilling"],            [["Head injury due to falling or shifting loads"], [["1. Observe caution with overhead hazards."]]]],
+    [67, 23, ["activity1"],  ["Drilling"],            [["Injury due to uncontrolled drill rig operation"], [["1. Know where the 'kill' switch is located on the drill rig."]]]],
+    [68, 23, ["activity1"],  ["Drilling"],            [["Breathing difficulty, disorientation"], [["1. Confirm adequate ventilation for combustion engines on the drill rig."]]]],
+    [69, 24, ["activity3"],  ["Test Pits"],           [["Injury due to excavation cave-in"], [["1. Do not enter test pits deeper than 4 feet unless they are stable and properly shored."]]]],
+    [70, 24, ["activity3"],  ["Test Pits"],           [["Injury due to equipment impact"], [["1. Agree with equipment operator as to a safe location to stand during excavation operations."], ["2. Do not remove soil from the backhoe bucket unless it is resting on the ground."], ["3. Make eye contact with and obtain approval from the operator before walking near moving equipment."]]]],
+    [71, 24, ["activity3"],  ["Test Pits"],           [["Injury due to falls, excavation cave in"], [["1. Do not approach excavations without appropriate fall protection equipment."]]]],
+    [72, 24, ["activity3"],  ["Test Pits"],           [["Excavation cave-in"], [["1. Make sure excavated material is placed at least 5 feet way from side of test pit."]]]],
+    [73, 24, ["activity3"],  ["Test Pits"],           [["Slips, trips, falls, injury to public"], [["1. Cover test pits or other excavations and provide adequate barricades and signs when not near test pit."]]]],
+    [74, 25, ["activity2"],  ["Reconnaissance"],      [["Slips, trips, falls"], [["1. Watch out for soft ground areas and/or holes when you are walking."], ["2. Wear appropriate foot and ankle protection."], ["3. Wear appropriate fall protection (if required) or have access to ropes for support while traversing slopes."]]]],
+    [75, 25, ["activity2"],  ["Reconnaissance"],      [["Loss of bearing (disorientation)"], [["1. Do not walk alone in ravines, slopes, or other areas where you cannot be seen."], ["2. Establish a reference point that can be easily seen from anywhere on the site."]]]],
+    [76, 25, ["activity2"],  ["Reconnaissance"],      [["Allergic reactions, insect, reptile, or mammal bites"], [["1. Be aware of local plant and animal species that may be a hazard (e.g. poisonous plans, insects, snakes)."], ["2. Wear long pants and long sleeved shirts, sturdy boots, and appropriate PPE (see top of form)."]]]],
+    [77, 25, ["activity2"],  ["Reconnaissance"],      [["Cuts and abrasions due to unseen hazards"], [["1. Be aware of utilities, barbed wire fences, and other hazards in reconnaissance area."]]]],
+    [78, 26, ["activity4"],  ["Lifting"],             [["Back injury due to lifting of heavy objects"], [["1. Stretch muscles before lifting."], ["2. Lift with the knees."], ["3. When lifting, maintain an upright position and avoid bending and twisting."], ["4. Keep the body as close to the load as possible."], ["5. Keep the travel distance for the lift to less than 10 feet."], ["6. Provide good handles or handholds for grasping loads."], ["7. Get assistance from others when possible."], ["8. Wear back protection, if necessary."]]]]
+  ];
+}
+</script>
+
+    </div>
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>
