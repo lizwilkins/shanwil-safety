@@ -1,13 +1,14 @@
 $(document).ready(function()
 {
   var form = $('form[name="myform"]');
+  var form2 = $('form[name="myform2"]');
 
   var textHeader = "SHANNON & WILSON, INC.";
 
   var textTitle = [
     "SITE-SPECIFIC HEALTH AND SAFETY PLAN",
-    form.jobName.value,
-    form.fieldLocation.value,
+    $('input[name="jobName"]').val(),
+    $('input[name="fieldLocation"]').val(),
     "This Health and Safety Plan is to be used in conjunction",
     "with Shannon & Wilson's Corporate Health and Safety Program"
   ];
@@ -15,21 +16,21 @@ $(document).ready(function()
   var textIntroduction = [
     "INTRODUCTION",
     "\nThis Site-specific Health & Safety Plan (SSHSP) has been prepared for Shannon & Wilson personnel performing project-specific activities for the " +
-    form.jobName.value + " in " + form.fieldLocation.value +
+    $('input[name="jobName"]').val() + " in " + $('input[name="fieldLocation"]').val() +
     ".  This plan provides a Job Safety Analysis (JSA) specific to the site and the work to be performed during the project.  All field personnel must understand the JSA before going to the site.  Acknowledgement that personnel are aware of this SSHSP and the JSA will be documented by signing the Acknowledgement Form included on the back of this document.  ",
     "\nField activities to be performed under this SSHSP include the following: " +
-    form.fieldActivity.value +
+    $('input[name="fieldActivity"]').val() +
     ".  If field activities other than those noted are performed, this document should be revised. The field activities are anticipated to extend from " +
-    form.fieldStart.value + " to " + form.fieldEnd.value + ".",
+    $('input[name="fieldStart"]').val() + " to " + $('input[name="fieldEnd"]').val() + ".",
     "\nORGANIZATION",
     "\nShannon & Wilson expects its employees to follow the policies and procedures set forth in the Corporate Health and Safety plan and the specific guidelines included in this SSHSP. Employees at all level of organization are covered by this requirement. In certain cases, deviations to a policy or procedure may be appropriate, but any changes must bye justifiable and documented. Changes in this program will only be made with the prior approval of the Site Safety Officer (SSO).",
     "\nThe goal on this project, as on all Shannon & Wilson projects, is to experience zero injuries and to remain in compliance with applicable federal, state, and local health and safety requirements.  Personnel accountable for employee's safety and health on this project include the Project Manager (PM), the SSO, and the Health and Safety Officer (HSO). The names and contact numbers for these key personnel for this project are listed below."
   ];
 
   var textPersonnel = [
-    ["Project Manager:  ", form.pmName.value, form.pmPhone.value],
-    ["Site Safety Officer:  ", form.ssoName.value, form.ssoPhone.value],
-    ["Health & Safety Officer:  ", form.hsoName.value, form.hsoPhone.value]
+    ["Project Manager:  ", $('input[name="pmName"]').val(), $('input[name="pmPhone"]').val()],
+    ["Site Safety Officer:  ", $('input[name="ssoName"]').val(), $('input[name="ssoPhone"]').val()],
+    ["Health & Safety Officer:  ", $('input[name="hsoName"]').val(), $('input[name="hsoPhone"]').val()]
   ];
 
   var textJSAParagraph = [
@@ -38,21 +39,21 @@ $(document).ready(function()
   ];
 
   var textJSAForm1 = [
-    "\nProject Number:  " + form.jobNumber.value,
-    "\nProject Title:\n" + form.jobName.value,
-    "\nProject Location:  " + form.fieldLocation.value,
-    "\nBrief Description of Field Activities:\n" + form.fieldActivity.value
+    "\nProject Number:  " + $('input[name="jobNumber"]').val(),
+    "\nProject Title:\n" + $('input[name="jobName"]').val(),
+    "\nProject Location:  " + $('input[name="fieldLocation"]').val(),
+    "\nBrief Description of Field Activities:\n" + $('input[name="fieldActivity"]').val()
   ];
 
   var textJSAForm2 = [
-    "\nPrepared By:  " + form.preparerName.value,
-    "Reviewed By:  " + form.reviewerName.value,
-    "Date:  " + form.dateToday.value,
-    "\nProject Mngr:  " + form.pmName.value,
-    "Site Safety:  " + form.ssoName.value,
-    "Field Staff:  " + form.fieldStaff.value,
-    "Field Start Date:  " + form.fieldStart.value,
-    "Field End Date:  " + form.fieldEnd.value
+    "\nPrepared By:  " + $('input[name="preparerName"]').val(),
+    "Reviewed By:  " + $('input[name="reviewerName"]').val(),
+    "Date:  " + $('input[name="dateToday"]').val(),
+    "\nProject Mngr:  " + $('input[name="pmName"]').val(),
+    "Site Safety:  " + $('input[name="ssoName"]').val(),
+    "Field Staff:  " + $('input[name="fieldStaff"]').val(),
+    "Field Start Date:  " + $('input[name="fieldStart"]').val(),
+    "Field End Date:  " + $('input[name="fieldEnd"]').val()
   ];
 
   var textJSAFormFields = [
@@ -87,8 +88,8 @@ $(document).ready(function()
 
   var textHospitalMapHeading = [
     "MAP TO HOSPITAL",
-    form.hospitalName.value,
-    form.hospitalAddress.value
+    $('input[name="hospitalName"]').val(),
+    $('input[name="hospitalAddress"]').val()
   ];
 
   var textHospitalMapSubheading = [
@@ -115,7 +116,7 @@ $(document).ready(function()
     "5. Complete appropriate form (s); see Appendix A of the Corporate Health and Safety Program.",
     "\nACKNOWLEDGEMENT AND SIGNATURE",
     "\nI acknowledge that I have read the SSHSP for the " +
-    form.jobNumber.value + " and that I understand the job hazards and safe job practices summarized on the JSA.   I have met with the PM to discuss the project details and any questions I have related to my personal safety.  I also acknowledge that I have read the Corporate Health and Safety Program documents for other Health and Safety information.",
+    $('input[name="jobNumber"]').val() + " and that I understand the job hazards and safe job practices summarized on the JSA.   I have met with the PM to discuss the project details and any questions I have related to my personal safety.  I also acknowledge that I have read the Corporate Health and Safety Program documents for other Health and Safety information.",
     "\nPrinted Name:  ______________________________________________  ",
     "\nSignature:     _______________________________________________  Date:  __________",
     "\nPM Printed Name:  ___________________________________________  ",
@@ -361,9 +362,9 @@ $(document).ready(function()
     docX.setTextColor (0);
   }
   function printFooter (docX, form, docInfo) {
-    docX.text (docInfo.leftMargin-5, docInfo.pageLength+10, form.dateToday.value);
+    docX.text (docInfo.leftMargin-5, docInfo.pageLength+10, $('input[name="dateToday"]').val());
     docX.text (docInfo.leftMargin+(docInfo.pageWidth*45/100), docInfo.pageLength+10, "Page " + docInfo.pageNumber);
-    docX.text (docInfo.rightMargin, docInfo.pageLength+10, form.jobNumber.value);
+    docX.text (docInfo.rightMargin, docInfo.pageLength+10, $('input[name="jobNumber"]').val());
   }
   function insertPage (docX, form, docInfo) {
     docX.addPage ();
@@ -555,21 +556,21 @@ $(document).ready(function()
     printFieldName (doc, docInfo, (textJSAFormFields[i++] + ":  "));
     var text = [""];
 
-    if (form.ppe1.checked)  {ppe[0][1] = true; text[0] += ppe[0][3] +  ", ";}
-    if (form.ppe2.checked)  {ppe[1][1] = true; text[0] += ppe[1][3] +  ", ";}
-    if (form.ppe3.checked)  {ppe[2][1] = true; text[0] += ppe[2][3] +  ", ";}
-    if (form.ppe4.checked)  {ppe[3][1] = true; text[0] += ppe[3][3] +  ", ";}
-    if (form.ppe5.checked)  {ppe[4][1] = true; text[0] += ppe[4][3] +  ", ";}
-    if (form.ppe6.checked)  {ppe[5][1] = true; text[0] += ppe[5][3] +  ", ";}
-    if (form.ppe7.checked)  {ppe[6][1] = true; text[0] += ppe[6][3] +  ", ";}
-    if (form.ppe8.checked)  {ppe[7][1] = true; text[0] += ppe[7][3] +  ", ";}
-    if (form.ppe9.checked)  {ppe[8][1] = true; text[0] += ppe[8][3] +  ", ";}
-    if (form.ppe10.checked) {ppe[9][1] = true; text[0] += ppe[9][3] +  ", ";}
-    if (form.ppe11.checked) {ppe[10][1] = true; text[0] += ppe[10][3] + ", ";}
-    if (form.ppe12.checked) {ppe[11][1] = true; text[0] += ppe[11][3] + ", ";}
-    if (form.ppe13.checked) {ppe[12][1] = true; text[0] += ppe[12][3] + ", ";}
-    if (form.ppe14.checked) {text[0] += form.ppe14Other.value + ", ";}
-    if (form.ppe15.checked) {text[0] += form.ppe15Other.value;}
+    if ($('input#ppe1').prop('checked'))  {ppe[0][1] = true; text[0] += ppe[0][3] +  ", ";}
+    if ($('input#ppe2').prop('checked'))  {ppe[1][1] = true; text[0] += ppe[1][3] +  ", ";}
+    if ($('input#ppe3').prop('checked'))  {ppe[2][1] = true; text[0] += ppe[2][3] +  ", ";}
+    if ($('input#ppe4').prop('checked'))  {ppe[3][1] = true; text[0] += ppe[3][3] +  ", ";}
+    if ($('input#ppe5').prop('checked'))  {ppe[4][1] = true; text[0] += ppe[4][3] +  ", ";}
+    if ($('input#ppe6').prop('checked'))  {ppe[5][1] = true; text[0] += ppe[5][3] +  ", ";}
+    if ($('input#ppe7').prop('checked'))  {ppe[6][1] = true; text[0] += ppe[6][3] +  ", ";}
+    if ($('input#ppe8').prop('checked'))  {ppe[7][1] = true; text[0] += ppe[7][3] +  ", ";}
+    if ($('input#ppe9').prop('checked'))  {ppe[8][1] = true; text[0] += ppe[8][3] +  ", ";}
+    if ($('input#ppe10').prop('checked')) {ppe[9][1] = true; text[0] += ppe[9][3] +  ", ";}
+    if ($('input#ppe11').prop('checked')) {ppe[10][1] = true; text[0] += ppe[10][3] + ", ";}
+    if ($('input#ppe12').prop('checked')) {ppe[11][1] = true; text[0] += ppe[11][3] + ", ";}
+    if ($('input#ppe13').prop('checked')) {ppe[12][1] = true; text[0] += ppe[12][3] + ", ";}
+    if ($('input#ppe14').prop('checked')) {text[0] += $('input[name="ppe14Other"]').val() + ", ";}
+    if ($('input#ppe15').prop('checked')) {text[0] += $('input[name="ppe15Other"]').val();}
 
     docInfo.horizontalOffset += 43;
     docInfo.textWidth -= 43;
@@ -580,16 +581,16 @@ $(document).ready(function()
     printFieldName (doc, docInfo, (textJSAFormFields[i++] + ":  "));
     text = [""];
 
-    if (form.training1.checked)  {training[0][1] = true; text[0] += training[0][3] + ", ";}
-    if (form.training2.checked)  {training[1][1] = true; text[0] += training[1][3] + ", ";}
-    if (form.training3.checked)  {training[2][1] = true; text[0] += training[2][3] + ", ";}
-    if (form.training4.checked)  {training[3][1] = true; text[0] += training[3][3] + ", ";}
-    if (form.training5.checked)  {training[4][1] = true; text[0] += training[4][3] + ", ";}
-    if (form.training6.checked)  {training[5][1] = true; text[0] += training[5][3] + ", ";}
-    if (form.training7.checked)  {training[6][1] = true; text[0] += training[6][3] + ", ";}
-    if (form.training8.checked)  {training[7][1] = true; text[0] += training[7][3] + ", ";}
-    if (form.training9.checked)  {text[0] += form.training9Other.value + ", ";}
-    if (form.training10.checked) {text[0] += form.training10Other.value;}
+    if ($('input#training1').prop('checked'))  {training[0][1] = true; text[0] += training[0][3] + ", ";}
+    if ($('input#training2').prop('checked'))  {training[1][1] = true; text[0] += training[1][3] + ", ";}
+    if ($('input#training3').prop('checked'))  {training[2][1] = true; text[0] += training[2][3] + ", ";}
+    if ($('input#training4').prop('checked'))  {training[3][1] = true; text[0] += training[3][3] + ", ";}
+    if ($('input#training5').prop('checked'))  {training[4][1] = true; text[0] += training[4][3] + ", ";}
+    if ($('input#training6').prop('checked'))  {training[5][1] = true; text[0] += training[5][3] + ", ";}
+    if ($('input#training7').prop('checked'))  {training[6][1] = true; text[0] += training[6][3] + ", ";}
+    if ($('input#training8').prop('checked'))  {training[7][1] = true; text[0] += training[7][3] + ", ";}
+    if ($('input#training9').prop('checked'))  {text[0] += $('input[name="training9Other"]').val() + ", ";}
+    if ($('input#training10').prop('checked')) {text[0] += $('input[name="training10Other"]').val();}
 
     docInfo.horizontalOffset += 43;
     docInfo.textWidth -= 43;
@@ -600,18 +601,18 @@ $(document).ready(function()
     printFieldName (doc, docInfo, (textJSAFormFields[i++] + ":  "));
     text = [""];
 
-    if (form.safety1.checked)  {safety[0][1] = true; text[0] += safety[0][3][0] + ", ";}
-    if (form.safety2.checked)  {safety[1][1] = true; text[0] += safety[1][3][0] + ", ";}
-    if (form.safety3.checked)  {safety[2][1] = true; text[0] += safety[2][3][0] + ", ";}
-    if (form.safety4.checked)  {safety[3][1] = true; text[0] += safety[3][3][0] + ", ";}
-    if (form.safety5.checked)  {safety[4][1] = true; text[0] += safety[4][3][0] + ", ";}
-    if (form.safety6.checked)  {safety[5][1] = true; text[0] += safety[5][3][0] + ", ";}
-    if (form.safety7.checked)  {safety[6][1] = true; text[0] += safety[6][3][0] + ", ";}
-    if (form.safety8.checked)  {safety[7][1] = true; text[0] += safety[7][3][0] + ", ";}
-    if (form.safety9.checked)  {safety[8][1] = true; text[0] += safety[8][3][0] + ", ";}
-    if (form.safety10.checked) {safety[9][1] = true; text[0] += safety[9][3][0] + ", ";}
-    if (form.safety11.checked) {text[0] += form.safety11Other.value + ", ";}
-    if (form.safety12.checked) {text[0] += form.safety12Other.value;}
+    if ($('input#safety1').prop('checked'))  {safety[0][1] = true; text[0] += safety[0][3][0] + ", ";}
+    if ($('input#safety2').prop('checked'))  {safety[1][1] = true; text[0] += safety[1][3][0] + ", ";}
+    if ($('input#safety3').prop('checked'))  {safety[2][1] = true; text[0] += safety[2][3][0] + ", ";}
+    if ($('input#safety4').prop('checked'))  {safety[3][1] = true; text[0] += safety[3][3][0] + ", ";}
+    if ($('input#safety5').prop('checked'))  {safety[4][1] = true; text[0] += safety[4][3][0] + ", ";}
+    if ($('input#safety6').prop('checked'))  {safety[5][1] = true; text[0] += safety[5][3][0] + ", ";}
+    if ($('input#safety7').prop('checked'))  {safety[6][1] = true; text[0] += safety[6][3][0] + ", ";}
+    if ($('input#safety8').prop('checked'))  {safety[7][1] = true; text[0] += safety[7][3][0] + ", ";}
+    if ($('input#safety9').prop('checked'))  {safety[8][1] = true; text[0] += safety[8][3][0] + ", ";}
+    if ($('input#safety10').prop('checked')) {safety[9][1] = true; text[0] += safety[9][3][0] + ", ";}
+    if ($('input#safety11').prop('checked')) {text[0] += $('input[name="safety11Other"]').val() + ", ";}
+    if ($('input#safety12').prop('checked')) {text[0] += $('input[name="safety12Other"]').val();}
 
     docInfo.horizontalOffset += 43;
     docInfo.textWidth -= 43;
@@ -622,14 +623,14 @@ $(document).ready(function()
     printFieldName (doc, docInfo, (textJSAFormFields[i++] + ":  "));
     text = [""];
 
-    if (form.permit1.checked) {permit[0][1] = true; text[0] += permit[0][3][0] + ", ";}
-    if (form.permit2.checked) {permit[1][1] = true; text[0] += permit[1][3][0] + ", ";}
-    if (form.permit3.checked) {permit[2][1] = true; text[0] += permit[2][3][0] + ", ";}
-    if (form.permit4.checked) {permit[3][1] = true; text[0] += permit[3][3][0] + ", ";}
-    if (form.permit5.checked) {permit[4][1] = true; text[0] += permit[4][3][0] + ", ";}
-    if (form.permit6.checked) {permit[5][1] = true; text[0] += permit[5][3][0] + ", ";}
-    if (form.permit7.checked) {text[0] += form.permit7Other.value + ", ";}
-    if (form.permit8.checked) {text[0] += form.permit8Other.value;}
+    if ($('input#permit1').prop('checked')) {permit[0][1] = true; text[0] += permit[0][3][0] + ", ";}
+    if ($('input#permit2').prop('checked')) {permit[1][1] = true; text[0] += permit[1][3][0] + ", ";}
+    if ($('input#permit3').prop('checked')) {permit[2][1] = true; text[0] += permit[2][3][0] + ", ";}
+    if ($('input#permit4').prop('checked')) {permit[3][1] = true; text[0] += permit[3][3][0] + ", ";}
+    if ($('input#permit5').prop('checked')) {permit[4][1] = true; text[0] += permit[4][3][0] + ", ";}
+    if ($('input#permit6').prop('checked')) {permit[5][1] = true; text[0] += permit[5][3][0] + ", ";}
+    if ($('input#permit7').prop('checked')) {text[0] += $('input[name="permit7Other"]').val() + ", ";}
+    if ($('input#permit8').prop('checked')) {text[0] += $('input[name="permit8Other"]').val();}
 
     docInfo.horizontalOffset += 43;
     docInfo.textWidth -= 43;
@@ -640,11 +641,11 @@ $(document).ready(function()
     printFieldName (doc, docInfo, (textJSAFormFields[i++] + ":  "));
     text = [""];
 
-    if (form.travel1.checked) {travel[0][1] = true; text[0] += travel[0][3] + ", ";}
-    if (form.travel2.checked) {travel[1][1] = true; text[0] += travel[1][3] + ", ";}
-    if (form.travel3.checked) {travel[2][1] = true; text[0] += travel[2][3] + ", ";}
-    if (form.travel4.checked) {tasks[16][1] = true; text[0] += travel[3][3] + ", ";}
-    if (form.travel5.checked) {text[0] += form.travel5Other.value;}
+    if ($('input#travel1').prop('checked')) {travel[0][1] = true; text[0] += travel[0][3] + ", ";}
+    if ($('input#travel2').prop('checked')) {travel[1][1] = true; text[0] += travel[1][3] + ", ";}
+    if ($('input#travel3').prop('checked')) {travel[2][1] = true; text[0] += travel[2][3] + ", ";}
+    if ($('input#travel4').prop('checked')) {tasks[16][1] = true; text[0] += travel[3][3] + ", ";}
+    if ($('input#travel5').prop('checked')) {text[0] += $('input[name="travel5Other"]').val();}
 
     docInfo.horizontalOffset += 43;
     docInfo.textWidth -= 43;
@@ -655,13 +656,13 @@ $(document).ready(function()
     printFieldName (doc, docInfo, (textJSAFormFields[i++] + ":  "));
     text = [""];
 
-    if (form.condition1.checked) {condition[0][1] = true; text[0] += condition[0][3] + ", ";}
-    if (form.condition2.checked) {tasks[4][1] = true; text[0] += condition[1][3] + ", ";}
-    if (form.condition3.checked) {tasks[2][1] = true; text[0] += condition[2][3] + ", ";}
-    if (form.condition4.checked) {tasks[5][1] = true; text[0] += condition[3][3] + ", ";}
-    if (form.condition5.checked) {tasks[3][1] = true; text[0] += condition[4][3] + ", ";}
-    if (form.condition6.checked) {tasks[6][1] = true; text[0] += condition[5][3] + ", ";}
-    if (form.condition7.checked) {text[0] += form.condition7Other.value;}
+    if ($('input#condition1').prop('checked')) {condition[0][1] = true; text[0] += condition[0][3] + ", ";}
+    if ($('input#condition2').prop('checked')) {tasks[4][1] = true; text[0] += condition[1][3] + ", ";}
+    if ($('input#condition3').prop('checked')) {tasks[2][1] = true; text[0] += condition[2][3] + ", ";}
+    if ($('input#condition4').prop('checked')) {tasks[5][1] = true; text[0] += condition[3][3] + ", ";}
+    if ($('input#condition5').prop('checked')) {tasks[3][1] = true; text[0] += condition[4][3] + ", ";}
+    if ($('input#condition6').prop('checked')) {tasks[6][1] = true; text[0] += condition[5][3] + ", ";}
+    if ($('input#condition7').prop('checked')) {text[0] += $('input[name="condition7Other"]').val();}
 
     docInfo.horizontalOffset += 43;
     docInfo.textWidth -= 43;
@@ -672,20 +673,20 @@ $(document).ready(function()
     printFieldName (doc, docInfo, (textJSAFormFields[i++] + ":  "));
     text = [""];
 
-    if (form.onLocation1.checked)  {tasks[8][1]  = true; text[0] += onLocation[0][3]  + ", ";}
-    if (form.onLocation2.checked)  {tasks[13][1] = true; text[0] += onLocation[1][3]  + ", ";}
-    if (form.onLocation3.checked)  {tasks[9][1]  = true; text[0] += onLocation[2][3]  + ", ";}
-    if (form.onLocation4.checked)  {tasks[14][1] = true; text[0] += onLocation[3][3]  + ", ";}
-    if (form.onLocation5.checked)  {tasks[10][1] = true; text[0] += onLocation[4][3]  + ", ";}
-    if (form.onLocation6.checked)  {tasks[15][1] = true; text[0] += onLocation[5][3]  + ", ";}
-    if (form.onLocation7.checked)  {tasks[11][1] = true; text[0] += onLocation[6][3]  + ", ";}
-    if (form.onLocation8.checked)  {tasks[16][1] = true; text[0] += onLocation[7][3]  + ", ";}
-    if (form.onLocation9.checked)  {tasks[12][1] = true; text[0] += onLocation[8][3]  + ", ";}
-    if (form.onLocation10.checked) {tasks[17][1] = true; text[0] += onLocation[9][3]  + ", ";}
-    if (form.onLocation11.checked) {tasks[18][1] = true; text[0] += onLocation[10][3] + ", ";}
-    if (form.onLocation12.checked) {tasks[19][1] = true; text[0] += onLocation[11][3] + ", ";}
-    if (form.onLocation13.checked) {text[0] += form.onLocation13Other.value + ", ";}
-    if (form.onLocation14.checked) {text[0] += form.onLocation14Other.value;}
+    if ($('input#onLocation1').prop('checked'))  {tasks[8][1]  = true; text[0] += onLocation[0][3]  + ", ";}
+    if ($('input#onLocation2').prop('checked'))  {tasks[13][1] = true; text[0] += onLocation[1][3]  + ", ";}
+    if ($('input#onLocation3').prop('checked'))  {tasks[9][1]  = true; text[0] += onLocation[2][3]  + ", ";}
+    if ($('input#onLocation4').prop('checked'))  {tasks[14][1] = true; text[0] += onLocation[3][3]  + ", ";}
+    if ($('input#onLocation5').prop('checked'))  {tasks[10][1] = true; text[0] += onLocation[4][3]  + ", ";}
+    if ($('input#onLocation6').prop('checked'))  {tasks[15][1] = true; text[0] += onLocation[5][3]  + ", ";}
+    if ($('input#onLocation7').prop('checked'))  {tasks[11][1] = true; text[0] += onLocation[6][3]  + ", ";}
+    if ($('input#onLocation8').prop('checked'))  {tasks[16][1] = true; text[0] += onLocation[7][3]  + ", ";}
+    if ($('input#onLocation9').prop('checked'))  {tasks[12][1] = true; text[0] += onLocation[8][3]  + ", ";}
+    if ($('input#onLocation10').prop('checked')) {tasks[17][1] = true; text[0] += onLocation[9][3]  + ", ";}
+    if ($('input#onLocation11').prop('checked')) {tasks[18][1] = true; text[0] += onLocation[10][3] + ", ";}
+    if ($('input#onLocation12').prop('checked')) {tasks[19][1] = true; text[0] += onLocation[11][3] + ", ";}
+    if ($('input#onLocation13').prop('checked')) {text[0] += $('input[name="onLocation13Other"]').val() + ", ";}
+    if ($('input#onLocation14').prop('checked')) {text[0] += $('input[name="onLocation14Other"]').val();}
 
     docInfo.horizontalOffset += 43;
     docInfo.textWidth -= 43;
@@ -696,13 +697,13 @@ $(document).ready(function()
     printFieldName (doc, docInfo, (textJSAFormFields[i++] + ":  "));
     text = [""];
 
-    if (form.activity1.checked)  {tasks[22][1] = true; text[0] += activity[0][3] + ", ";}
-    if (form.activity2.checked)  {tasks[24][1] = true; text[0] += activity[1][3] + ", ";}
-    if (form.activity3.checked)  {tasks[23][1] = true; text[0] += activity[2][3] + ", ";}
-    if (form.activity4.checked)  {tasks[25][1] = true; text[0] += activity[3][3] + ", ";}
-    if (form.activity5.checked)  {activity[4][1] = true; text[0] += activity[4][3] + "  ";}
-    if (form.activity5Item1.value !== "")  {text[0] += form.activity5Item1.value + ", ";}
-    if (form.activity5Item2.value !== "")  {text[0] += form.activity5Item2.value;}
+    if ($('input#activity1').prop('checked'))  {tasks[22][1] = true; text[0] += activity[0][3] + ", ";}
+    if ($('input#activity2').prop('checked'))  {tasks[24][1] = true; text[0] += activity[1][3] + ", ";}
+    if ($('input#activity3').prop('checked'))  {tasks[23][1] = true; text[0] += activity[2][3] + ", ";}
+    if ($('input#activity4').prop('checked'))  {tasks[25][1] = true; text[0] += activity[3][3] + ", ";}
+    if ($('input#activity5').prop('checked'))  {activity[4][1] = true; text[0] += activity[4][3] + "  ";}
+    if ($('input[name="activity5Item1"]').val() !== "")  {text[0] += $('input[name="activity5Item1"]').val() + ", ";}
+    if ($('input[name="activity5Item2"]').val() !== "")  {text[0] += $('input[name="activity5Item2"]').val();}
 
     docInfo.horizontalOffset += 43;
     docInfo.textWidth -= 43;
@@ -713,18 +714,18 @@ $(document).ready(function()
     printFieldName (doc, docInfo, (textJSAFormFields[i++] + ":  "));
     text = [""];
 
-    if (form.equipment1.checked)  {equipment[0][1] = true; text[0] += equipment[0][3][0] + ", ";}
-    if (form.equipment2.checked)  {equipment[1][1] = true; text[0] += equipment[1][3][0] + ", ";}
-    if (form.equipment3.checked)  {equipment[2][1] = true; text[0] += equipment[2][3][0] + ", ";}
-    if (form.equipment4.checked)  {equipment[3][1] = true; text[0] += equipment[3][3][0] + ", ";}
-    if (form.equipment5.checked)  {equipment[4][1] = true; text[0] += equipment[4][3][0] + ", ";}
-    if (form.equipment6.checked)  {equipment[5][1] = true; text[0] += equipment[5][3][0] + ", ";}
-    if (form.equipment7.checked)  {equipment[6][1] = true; text[0] += equipment[6][3][0] + ", ";}
-    if (form.equipment8.checked)  {equipment[7][1] = true; text[0] += equipment[7][3][0] + ", ";}
-    if (form.equipment9.checked)  {equipment[8][1] = true; text[0] += equipment[8][3][0] + ", ";}
-    if (form.equipment10.checked) {equipment[9][1] = true; text[0] += equipment[9][3][0] + ", ";}
-    if (form.equipment11.checked) {text[0] += form.equipment11Other.value + ", ";}
-    if (form.equipment12.checked) {text[0] += form.equipment12Other.value;}
+    if ($('input#equipment1').prop('checked'))  {equipment[0][1] = true; text[0] += equipment[0][3][0] + ", ";}
+    if ($('input#equipment2').prop('checked'))  {equipment[1][1] = true; text[0] += equipment[1][3][0] + ", ";}
+    if ($('input#equipment3').prop('checked'))  {equipment[2][1] = true; text[0] += equipment[2][3][0] + ", ";}
+    if ($('input#equipment4').prop('checked'))  {equipment[3][1] = true; text[0] += equipment[3][3][0] + ", ";}
+    if ($('input#equipment5').prop('checked'))  {equipment[4][1] = true; text[0] += equipment[4][3][0] + ", ";}
+    if ($('input#equipment6').prop('checked'))  {equipment[5][1] = true; text[0] += equipment[5][3][0] + ", ";}
+    if ($('input#equipment7').prop('checked'))  {equipment[6][1] = true; text[0] += equipment[6][3][0] + ", ";}
+    if ($('input#equipment8').prop('checked'))  {equipment[7][1] = true; text[0] += equipment[7][3][0] + ", ";}
+    if ($('input#equipment9').prop('checked'))  {equipment[8][1] = true; text[0] += equipment[8][3][0] + ", ";}
+    if ($('input#equipment10').prop('checked')) {equipment[9][1] = true; text[0] += equipment[9][3][0] + ", ";}
+    if ($('input#equipment11').prop('checked')) {text[0] += $('input[name="equipment11Other"]').val() + ", ";}
+    if ($('input#equipment12').prop('checked')) {text[0] += $('input[name="equipment12Other"]').val();}
 
     docInfo.horizontalOffset += 43;
     docInfo.textWidth -= 43;
@@ -735,14 +736,14 @@ $(document).ready(function()
     printFieldName (doc, docInfo, (textJSAFormFields[i++] + ":  "));
     text = [""];
 
-    if (form.equipTraining1.value !== "") {text[0] += form.equipTraining1.value + ", ";}
-    if (form.equipTraining2.value !== "") {text[0] += form.equipTraining2.value + ", ";}
-    if (form.equipTraining3.value !== "") {text[0] += form.equipTraining3.value + ", ";}
-    if (form.equipTraining4.value !== "") {text[0] += form.equipTraining4.value + ", ";}
-    if (form.equipTraining5.value !== "") {text[0] += form.equipTraining5.value + ", ";}
-    if (form.equipTraining6.value !== "") {text[0] += form.equipTraining6.value + ", ";}
-    if (form.equipTraining7.value !== "") {text[0] += form.equipTraining7.value + ", ";}
-    if (form.equipTraining8.value !== "") {text[0] += form.equipTraining8.value;}
+    if ($('input[name="equipTraining1"]').val()) {text[0] += $('input[name="equipTraining1"]').val() + ", ";}
+    if ($('input[name="equipTraining2"]').val()) {text[0] += $('input[name="equipTraining2"]').val() + ", ";}
+    if ($('input[name="equipTraining3"]').val()) {text[0] += $('input[name="equipTraining3"]').val() + ", ";}
+    if ($('input[name="equipTraining4"]').val()) {text[0] += $('input[name="equipTraining4"]').val() + ", ";}
+    if ($('input[name="equipTraining5"]').val()) {text[0] += $('input[name="equipTraining5"]').val() + ", ";}
+    if ($('input[name="equipTraining6"]').val()) {text[0] += $('input[name="equipTraining6"]').val() + ", ";}
+    if ($('input[name="equipTraining7"]').val()) {text[0] += $('input[name="equipTraining7"]').val() + ", ";}
+    if ($('input[name="equipTraining8"]').val()) {text[0] += $('input[name="equipTraining8"]').val();}
 
     docInfo.horizontalOffset += 43;
     docInfo.textWidth -= 43;
@@ -989,5 +990,9 @@ $(document).ready(function()
 
   $("button#reset").click(function () {
     form.reset();
+  });
+
+  $("button#modify").click(function () {
+    updateDatabase(form);
   });
 });
