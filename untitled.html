@@ -236,15 +236,15 @@
               <div class="large-12 columns">
                 <fieldset>
                   <legend>What types of tools/equipment will you be operating?</legend>
-                  <input id="equipment1" type="checkbox"><label for="equipment1">photo\-ionization detector (PID)</label><br>
-                  <input id="equipment2" type="checkbox"><label for="equipment2">hand‐operated electrical tools</label><br>
-                  <input id="equipment3" type="checkbox"><label for="equipment3">high-pressure tools (air, water)</label><br>
-                  <input id="equipment4" type="checkbox"><label for="equipment4">fueling of power tools</label><br>
-                  <input id="equipment5" type="checkbox"><label for="equipment5">explosives</label><br>
-                  <input id="equipment6" type="checkbox"><label for="equipment6">electrical cords</label><br>
-                  <input id="equipment7" type="checkbox"><label for="equipment7">hoists or lifts</label><br>
-                  <input id="equipment8" type="checkbox"><label for="equipment8">ladders</label><br>
-                  <input id="equipment9" type="checkbox"><label for="equipment9">nuclear densometer</label><br>
+                  <input id="equipment1" type="checkbox"><label for="equipment1">electrical cords</label><br>
+                  <input id="equipment2" type="checkbox"><label for="equipment2">ladders</label><br>
+                  <input id="equipment3" type="checkbox"><label for="equipment3">hand‐operated electrical tools</label><br>
+                  <input id="equipment4" type="checkbox"><label for="equipment4">hoists or lifts</label><br>
+                  <input id="equipment5" type="checkbox"><label for="equipment5">high-pressure tools (air, water)</label><br>
+                  <input id="equipment6" type="checkbox"><label for="equipment6">explosives</label><br>
+                  <input id="equipment7" type="checkbox"><label for="equipment7">nuclear densometer</label><br>
+                  <input id="equipment8" type="checkbox"><label for="equipment8">photo\-ionization detector (PID)</label><br>
+                  <input id="equipment9" type="checkbox"><label for="equipment9">fueling of power tools</label><br>
                   <input id="equipment10" type="checkbox"><label for="equipment10">hand‐operated gas-/diesel‐powered tools</label><br>
                   <div class="row">
                     <div class="small-1 columns">
@@ -762,7 +762,7 @@ textJSAFormFields = [
     [3, false, "condition3", "night or low\-light hours"],
     [4, false, "condition4", "cold weather"],
     [5, false, "condition5", "extended hours (>10 hr shift)"],
-    [6, false, "condition6", "storm/lightning potential"]
+    [6, false, "condition6", "storm\/lightning potential"]
   ];
 
   onLocation = [   // [ID, selected, checkBoxId, description]
@@ -857,7 +857,7 @@ textJSAFormFields = [
     [4,  false, "task4",  ["Working extended hours"]],
     [5,  false, "task5",  ["Working in hot weather"]],
     [6,  false, "task6",  ["Working in cold weather"]],
-    [7,  false, "task7",  ["Working in areas with potential storms and\/or lightning"]],
+    [7,  false, "task7",  ["Working in areas with potential storms and/or lightning"]],
     [8,  false, "task8",  ["Walking around site"]],
     [9,  false, "task9",  ["Working on a highway"]],
     [10, false, "task10", ["Working on a city street (blocking traffic)"]],
@@ -865,15 +865,15 @@ textJSAFormFields = [
     [12, false, "task12", ["Working on or near railroads (within 50 feet of track CL)"]],
     [13, false, "task13", ["Working in a remote area"]],
     [14, false, "task14", ["Working on a construction site"]],
-    [15, false, "task15", ["Working on a slope and\/or uneven ground"]],
+    [15, false, "task15", ["Working on a slope and/or uneven ground"]],
     [16, false, "task16", ["Working in a landslide area"]],
-    [17, false, "task17", ["Working overwater from a barge\/boat"]],
+    [17, false, "task17", ["Working overwater from a barge/boat"]],
     [18, false, "task18", ["Working inside a building or structure"]],
     [19, false, "task19", ["Working near public activities"]],
     [20, false, "task20", ["Working in a confined space"]],
     [21, false, "task21", ["Position drill rig"]],
     [22, false, "task22", ["Position excavator"]],
-    [23, false, "task23", ["Observe drilling\/coring activities"]],
+    [23, false, "task23", ["Observe drilling/coring activities"]],
     [24, false, "task24", ["Observe and log test pit excavations"]],
     [25, false, "task25", ["Performing field reconnaissance"]],
     [26, false, "task26", ["Lifting of samples or other heavy items"]]
@@ -1127,7 +1127,7 @@ textJSAFormFields = [
   if (form.travel1.checked) {travel[0][1] = true; text[0] += travel[0][3] + ", ";}
   if (form.travel2.checked) {travel[1][1] = true; text[0] += travel[1][3] + ", ";}
   if (form.travel3.checked) {travel[2][1] = true; text[0] += travel[2][3] + ", ";}
-  if (form.travel4.checked) {tasks[16][1] = true; text[0] += travel[3][3] + ", ";}
+  if (form.travel4.checked) {travel[3][1] = true; text[0] += travel[3][3] + ", ";}
   if (form.travel5.checked) {text[0] += form.travel5Other.value;}
 
   docInfo.horizontalOffset += 43;
@@ -1140,11 +1140,11 @@ textJSAFormFields = [
   text = [""];
 
   if (form.condition1.checked) {condition[0][1] = true; text[0] += condition[0][3] + ", ";}
-  if (form.condition2.checked) {tasks[4][1] = true; text[0] += condition[1][3] + ", ";}
-  if (form.condition3.checked) {tasks[2][1] = true; text[0] += condition[2][3] + ", ";}
-  if (form.condition4.checked) {tasks[5][1] = true; text[0] += condition[3][3] + ", ";}
-  if (form.condition5.checked) {tasks[3][1] = true; text[0] += condition[4][3] + ", ";}
-  if (form.condition6.checked) {tasks[6][1] = true; text[0] += condition[5][3] + ", ";}
+  if (form.condition2.checked) {condition[1][1] = true; text[0] += condition[1][3] + ", ";}
+  if (form.condition3.checked) {condition[2][1] = true; text[0] += condition[2][3] + ", ";}
+  if (form.condition4.checked) {condition[3][1] = true; text[0] += condition[3][3] + ", ";}
+  if (form.condition5.checked) {condition[4][1] = true; text[0] += condition[4][3] + ", ";}
+  if (form.condition6.checked) {condition[5][1] = true; text[0] += condition[5][3] + ", ";}
   if (form.condition7.checked) {text[0] += form.condition7Other.value;}
 
   docInfo.horizontalOffset += 43;
@@ -1156,18 +1156,18 @@ textJSAFormFields = [
   printFieldName (doc, docInfo, (textJSAFormFields[i++] + ":  "));
   text = [""];
 
-  if (form.onLocation1.checked)  {tasks[8][1]  = true; text[0] += onLocation[0][3]  + ", ";}
-  if (form.onLocation2.checked)  {tasks[13][1] = true; text[0] += onLocation[1][3]  + ", ";}
-  if (form.onLocation3.checked)  {tasks[9][1]  = true; text[0] += onLocation[2][3]  + ", ";}
-  if (form.onLocation4.checked)  {tasks[14][1] = true; text[0] += onLocation[3][3]  + ", ";}
-  if (form.onLocation5.checked)  {tasks[10][1] = true; text[0] += onLocation[4][3]  + ", ";}
-  if (form.onLocation6.checked)  {tasks[15][1] = true; text[0] += onLocation[5][3]  + ", ";}
-  if (form.onLocation7.checked)  {tasks[11][1] = true; text[0] += onLocation[6][3]  + ", ";}
-  if (form.onLocation8.checked)  {tasks[16][1] = true; text[0] += onLocation[7][3]  + ", ";}
-  if (form.onLocation9.checked)  {tasks[12][1] = true; text[0] += onLocation[8][3]  + ", ";}
-  if (form.onLocation10.checked) {tasks[17][1] = true; text[0] += onLocation[9][3]  + ", ";}
-  if (form.onLocation11.checked) {tasks[18][1] = true; text[0] += onLocation[10][3] + ", ";}
-  if (form.onLocation12.checked) {tasks[19][1] = true; text[0] += onLocation[11][3] + ", ";}
+  if (form.onLocation1.checked)  {onLocation[0][1] = true; text[0] += onLocation[0][3]  + ", ";}
+  if (form.onLocation2.checked)  {onLocation[1][1] = true; text[0] += onLocation[1][3]  + ", ";}
+  if (form.onLocation3.checked)  {onLocation[2][1] = true; text[0] += onLocation[2][3]  + ", ";}
+  if (form.onLocation4.checked)  {onLocation[3][1] = true; text[0] += onLocation[3][3]  + ", ";}
+  if (form.onLocation5.checked)  {onLocation[4][1] = true; text[0] += onLocation[4][3]  + ", ";}
+  if (form.onLocation6.checked)  {onLocation[5][1] = true; text[0] += onLocation[5][3]  + ", ";}
+  if (form.onLocation7.checked)  {onLocation[6][1] = true; text[0] += onLocation[6][3]  + ", ";}
+  if (form.onLocation8.checked)  {onLocation[7][1] = true; text[0] += onLocation[7][3]  + ", ";}
+  if (form.onLocation9.checked)  {onLocation[8][1] = true; text[0] += onLocation[8][3]  + ", ";}
+  if (form.onLocation10.checked) {onLocation[9][1] = true; text[0] += onLocation[9][3]  + ", ";}
+  if (form.onLocation11.checked) {onLocation[10][1] = true; text[0] += onLocation[10][3] + ", ";}
+  if (form.onLocation12.checked) {onLocation[11][1] = true; text[0] += onLocation[11][3] + ", ";}
   if (form.onLocation13.checked) {text[0] += form.onLocation13Other.value + ", ";}
   if (form.onLocation14.checked) {text[0] += form.onLocation14Other.value;}
 
@@ -1180,10 +1180,10 @@ textJSAFormFields = [
   printFieldName (doc, docInfo, (textJSAFormFields[i++] + ":  "));
   text = [""];
 
-  if (form.activity1.checked)  {tasks[22][1] = true; text[0] += activity[0][3] + ", ";}
-  if (form.activity2.checked)  {tasks[24][1] = true; text[0] += activity[1][3] + ", ";}
-  if (form.activity3.checked)  {tasks[23][1] = true; text[0] += activity[2][3] + ", ";}
-  if (form.activity4.checked)  {tasks[25][1] = true; text[0] += activity[3][3] + ", ";}
+  if (form.activity1.checked)  {activity[0][1] = true; text[0] += activity[0][3] + ", ";}
+  if (form.activity2.checked)  {activity[1][1] = true; text[0] += activity[1][3] + ", ";}
+  if (form.activity3.checked)  {activity[2][1] = true; text[0] += activity[2][3] + ", ";}
+  if (form.activity4.checked)  {activity[3][1] = true; text[0] += activity[3][3] + ", ";}
   if (form.activity5.checked)  {activity[4][1] = true; text[0] += activity[4][3] + "  ";}
   if (form.activity5Item1.value !== "")  {text[0] += form.activity5Item1.value + ", ";}
   if (form.activity5Item2.value !== "")  {text[0] += form.activity5Item2.value;}
@@ -1273,7 +1273,7 @@ textJSAFormFields = [
     if (safety[i][1])
     {
       docInfo.rowWidth  = 0;
-      for (j=3; j<6; j++)    // safety.length
+      for (j=3; j<6; j++)
       {
         docInfo.textWidth = equipmentColumns[j-3] - 10;
         if (safety[i][j] !== "") {docInfo = splitText (docL, form, docInfo, safety[i][j], true);}
@@ -1381,52 +1381,49 @@ textJSAFormFields = [
 
   for (i in tasks)
   {
-    if (tasks[i][1])
+    if (docInfo.verticalOffset + docInfo.lineSpacing*5 >= docInfo.pageLength)
     {
-      if (docInfo.verticalOffset + docInfo.lineSpacing*5 >= docInfo.pageLength)
-      {
-        docInfo = insertPage (docL, form, docInfo);
-      }
-      drawTableBorders (docL, docInfo.horizontalOffset-5, docInfo.verticalOffset-5, docInfo.lineSpacing*1.5, boxWidthJSA2, 1);
-      docL.setFontType ("bold");
-      docL.setFont ("arial");
-      docL.text (docInfo.horizontalOffset, docInfo.verticalOffset, tasks[i][3]);
-      docL.setFontType ("regular");
-      docL.setFont ("arial");
-      docInfo.verticalOffset += docInfo.lineSpacing*3;
-      docInfo.rowOffset = docInfo.verticalOffset;
-
-      for (j in hazards)
-      {
-        if (hazards[j][1] == tasks[i][0])
-        {
-          docInfo.rowWidth = 0;
-          docInfo.textWidth = equipmentColumns[0] - 5;
-          docInfo = splitText (docL, form, docInfo, hazards[j][5], false);
-          if (docInfo.rowWidth < docInfo.verticalOffset) {docInfo.rowWidth = docInfo.verticalOffset;}
-          docInfo.horizontalOffset += equipmentColumns[0];
-          docInfo.verticalOffset = docInfo.rowOffset;
-          docInfo.textWidth = equipmentColumns[1] - 7;
-          docInfo = splitText (docL, form, docInfo, hazards[j][6][0], true);
-          if (docInfo.rowWidth < docInfo.verticalOffset) {docInfo.rowWidth = docInfo.verticalOffset;}
-          docInfo.horizontalOffset += equipmentColumns[1];
-          docInfo.verticalOffset = docInfo.rowOffset;
-          docInfo.textWidth = equipmentColumns[2] - 7;
-
-          for (k in hazards[j][5])
-          {
-            docInfo = splitText (docL, form, docInfo, hazards[j][6][1][k], true);
-          }
-          if (docInfo.rowWidth < docInfo.verticalOffset) {docInfo.rowWidth = docInfo.verticalOffset;}
-          docInfo.rowOffset = docInfo.rowWidth + docInfo.lineSpacing;
-          docInfo.verticalOffset = docInfo.rowOffset;
-          docInfo.horizontalOffset = leftMargin;
-        }
-      }
-      docInfo.verticalOffset += docInfo.lineSpacing;
-      docInfo.rowOffset = docInfo.rowWidth + docInfo.lineSpacing;
-      docInfo.rowOffset = docInfo.verticalOffset;
+      docInfo = insertPage (docL, form, docInfo);
     }
+    drawTableBorders (docL, docInfo.horizontalOffset-5, docInfo.verticalOffset-5, docInfo.lineSpacing*1.5, boxWidthJSA2, 1);
+    docL.setFontType ("bold");
+    docL.setFont ("arial");
+    docL.text (docInfo.horizontalOffset, docInfo.verticalOffset, tasks[i][3]);
+    docL.setFontType ("regular");
+    docL.setFont ("arial");
+    docInfo.verticalOffset += docInfo.lineSpacing*3;
+    docInfo.rowOffset = docInfo.verticalOffset;
+
+    for (j in hazards)
+    {
+      if ((hazards[j][1] == tasks[i][0]) && (tasks[i][1]))
+      {
+        docInfo.rowWidth = 0;
+        docInfo.textWidth = equipmentColumns[0] - 5;
+        docInfo = splitText (docL, form, docInfo, hazards[j][4], false);
+        if (docInfo.rowWidth < docInfo.verticalOffset) {docInfo.rowWidth = docInfo.verticalOffset;}
+        docInfo.horizontalOffset += equipmentColumns[0];
+        docInfo.verticalOffset = docInfo.rowOffset;
+        docInfo.textWidth = equipmentColumns[1] - 7;
+        docInfo = splitText (docL, form, docInfo, hazards[j][5][0], true);
+        if (docInfo.rowWidth < docInfo.verticalOffset) {docInfo.rowWidth = docInfo.verticalOffset;}
+        docInfo.horizontalOffset += equipmentColumns[1];
+        docInfo.verticalOffset = docInfo.rowOffset;
+        docInfo.textWidth = equipmentColumns[2] - 7;
+
+        for (k in hazards[j][5])
+        {
+          docInfo = splitText (docL, form, docInfo, hazards[j][5][1][k], true);
+        }
+        if (docInfo.rowWidth < docInfo.verticalOffset) {docInfo.rowWidth = docInfo.verticalOffset;}
+        docInfo.rowOffset = docInfo.rowWidth + docInfo.lineSpacing;
+        docInfo.verticalOffset = docInfo.rowOffset;
+        docInfo.horizontalOffset = leftMargin;
+      }
+    }
+    docInfo.verticalOffset += docInfo.lineSpacing*2;
+    docInfo.rowOffset = docInfo.rowWidth + docInfo.lineSpacing;
+    docInfo.rowOffset = docInfo.verticalOffset;
   }
 
   docInfo.textWidth = pageWidthLandscape;
