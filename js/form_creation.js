@@ -983,7 +983,14 @@ $(document).ready(function()
     doc.save ('Test.pdf');
     docL.save ('TestL.pdf');
   }
-
+/*
+  function updateDatabase(form2) {
+    if ($('input#travel1').prop('checked')) {travel[0][1] = true; text[0] += travel[0][3] + ", ";}
+    if ($('input#travel2').prop('checked')) {travel[1][1] = true; text[0] += travel[1][3] + ", ";}
+    if ($('input#travel3').prop('checked')) {travel[2][1] = true; text[0] += travel[2][3] + ", ";}
+    if ($('input#travel4').prop('checked')) {tasks[16][1] = true; text[0] += travel[3][3] + ", ";}
+  }
+*/
   $("button#generate").click(function () {
     generateHSP(form);
   });
@@ -992,7 +999,7 @@ $(document).ready(function()
     form.reset();
   });
 
-  $("button#modify").click(function () {
+  $("button#update").click(function () {
     updateDatabase(form);
   });
 });
