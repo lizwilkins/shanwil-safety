@@ -23,7 +23,7 @@ $(document).ready(function()
     ".  If field activities other than those noted are performed, this document should be revised. The field activities are anticipated to extend from " +
     $('input[name="fieldStart"]').val() + " to " + $('input[name="fieldEnd"]').val() + ".",
     "\nORGANIZATION",
-    "\nShannon & Wilson expects its employees to follow the policies and procedures set forth in the Corporate Health and Safety plan and the specific guidelines included in this SSHSP. Employees at all level of organization are covered by this requirement. In certain cases, deviations to a policy or procedure may be appropriate, but any changes must bye justifiable and documented. Changes in this program will only be made with the prior approval of the Site Safety Officer (SSO).",
+    "\nShannon & Wilson expects its employees to follow the policies and procedures set forth in the Corporate Health and Safety plan and the specific guidelines included in this SSHSP. Employees at all level of organization are covered by this requirement. In certain cases, deviations to a policy or procedure may be appropriate, but any changes must be justifiable and documented. Changes in this program will only be made with the prior approval of the Site Safety Officer (SSO).",
     "\nThe goal on this project, as on all Shannon & Wilson projects, is to experience zero injuries and to remain in compliance with applicable federal, state, and local health and safety requirements.  Personnel accountable for employee's safety and health on this project include the Project Manager (PM), the SSO, and the Health and Safety Officer (HSO). The names and contact numbers for these key personnel for this project are listed below."
   ];
 
@@ -141,6 +141,35 @@ $(document).ready(function()
     "Safe Job Practices\nDevelop specific engineering, administrative, and\npersonal controls for potential hazards for each\nwork activity."
   ];
 
+  var taskSubheadings = [
+    [1,  true,  "Travel to and from site"],
+    [2,  true,  "General work on site"],
+    [3,  false, "Working in low\-light conditions"],
+    [4,  false, "Working extended hours"],
+    [5,  false, "Working in hot weather"],
+    [6,  false, "Working in cold weather"],
+    [7,  false, "Working in areas with potential storms and\/or lightning"],
+    [8,  false, "Walking around site"],
+    [9,  false, "Working on a highway"],
+    [10, false, "Working on a city street (blocking traffic)"],
+    [11, false, "Working on a street shoulder or sidewalk"],
+    [12, false, "Working on or near railroads (within 50 feet of track CL)"],
+    [13, false, "Working in a remote area"],
+    [14, false, "Working on a construction site"],
+    [15, false, "Working on a slope and\/or uneven ground"],
+    [16, false, "Working in a landslide area"],
+    [17, false, "Working overwater from a barge\/boat"],
+    [18, false, "Working inside a building or structure"],
+    [19, false, "Working near public activities"],
+    [20, false, "Working in a confined space"],
+    [21, false, "Position drill rig"],
+    [22, false, "Position excavator"],
+    [23, false, "Observe drilling\/coring activities"],
+    [24, false, "Observe and log test pit excavations"],
+    [25, false, "Performing field reconnaissance"],
+    [26, false, "Lifting of samples or other heavy items"]
+  ];
+
   var travel = [   // [ID, selected, checkBoxId, description]
     [1, false, "travel1", "by car/truck on paved roads/highways"],
     [2, false, "travel2", "by car/truck on single\-lane/unpaved highways"],
@@ -190,7 +219,7 @@ $(document).ready(function()
     [7,  false, "equipment7",  ["electrical cords"], [""], [""] ,[[["Electrocution"], [["1. Make sure electrical cords are in good condition with no exposed wires."], ["2. Confirm that electrical cords and plugs are not wet or submerged in water."]]], [["Electrocution, loss of control"], [["1. Make sure tool is off when plugging and unplugging electrical cords."]]], [["Loss of control, slips, trips, falls"], [["1. Make sure electrical cords are secured or routed so that equipment and personnel do not snag cords."]]]]],
     [8,  false, "equipment8",  ["ladders"], [""], [""], [[["Falling from a ladder or slipping at the bottom or top of ladder"], [["1. Do not tie multiple ladders together."], ["2. Do not load ladders beyond maximum design load."], ["3. Place ladders on stable and level surfaces."], ["4. Secure ladders to prevent shifting or disturbance."], ["5. Do not set extension ladders steeper than 4 vertical to 1 horizontal."], ["6. Extend ladders at least 3 feet above upper landing."], ["7. Make sure ladder is in good operating condition."], ["8. Keep area around top of ladder clear."]]], [["Cuts, abrasions, falls"], [["1. Hoist equipment on separate lines or in belts/pockets (not in hands)."]]]]],
     [9,  false, "equipment9",  ["nuclear densometer"], [""], [""], [[["Damage to, or loss of, gauge"], [["1. Keep Gauge Shipping Paper and Emergency Response information in your transport vehicle."], ["2. Secure gauge to vehicle during transport or when not in use."], ["3. If the gauge will be on site for an extended period, secure gauge in a storage locker when not being used."], ["4. Keep gauge out of the path of equipment and in sight at all times when in use."]]], [["Unnecessary exposure to radiation"], [["1. Keep gauge at least 15 feet away from you when not in use."], ["2. Do not touch rod as it is extracted."], ["3. Point rod away from you when extracting and inserting into test hole."]]]]],
-    [10, false, "equipment10", ["hand\-operated, gas\-/diesel\-powered tools"], [""], [""], [[["Eye injury"], [["1. Wear protective goggles or face mask when using tools."]]], [["Cuts and abrasions, hearing loss"], [["1. Wear appropriate PPE (see top of form) including earplugs and gloves."], ["2. Do not wear loose clothing when operating tools."]]], [["Injury due to kickback or loss of control"], [["1. Use two hands when operating tool and maintain stable stance.  Do not operate tool while moving."], ["2. Make sure material being operated on is secured."]]], [["Slips, trips, falls during operation"], [["1. Clear away brush, vegetation, or other materials that might interfere with safe operation of tool."]]], [["Injury from improper operation of tool"], [["1. Obtain training in use of tool.  Follow manufacter's recommendations for use."]]], [["Injury from equipment malfunction"], [["1. Make sure tool is in good condition before using.  Report broken or malfunctioning equipment."]]]]]
+    [10, false, "equipment10", ["hand\-operated, gas\-/diesel\-powered tools"], [""], [""], [[["Eye injury"], [["1. Wear protective goggles or face mask when using tools."]]], [["Cuts and abrasions, hearing loss"], [["1. Wear appropriate PPE (see top of form) including earplugs and gloves."], ["2. Do not wear loose clothing when operating tools."]]], [["Injury due to kickback or loss of control"], [["1. Use two hands when operating tool and maintain stable stance.  Do not operate tool while moving."], ["2. Make sure material being operated on is secured."]]], [["Slips, trips, falls during operation"], [["1. Clear away brush, vegetation, or other materials that might interfere with safe operation of tool."]]], [["Injury from improper operation of tool"], [["1. Obtain training in use of tool.  Follow manufacturer's recommendations for use."]]], [["Injury from equipment malfunction"], [["1. Make sure tool is in good condition before using.  Report broken or malfunctioning equipment."]]]]]
   ];
 
   var permit = [   // [ID, selected, checkBoxId, description]
@@ -204,7 +233,7 @@ $(document).ready(function()
 
   var safety = [   // [ID, selected, checkBoxId, description, inspection, training]
     [1,  false, "safety1",   ["first\-aid kit"], ["1. Check to make sure kit is complete prior to use at site.\n2. Replace used or outdated items."], ["1. Current First Aid certification is required for all S&W employees but use of first aid kit is permitted for anyone."]],
-    [2,  false, "safety2",   ["fire estinguisher"], ["1. Monthly inspection by S&W and yearly professional inspection.\n2. Check to make sure the inspection tag is not expired."], ["1. Fire extinguisher use training preferred, but use of fire extinguisher is permitted for anyone in an emergency."]],
+    [2,  false, "safety2",   ["fire extinguisher"], ["1. Monthly inspection by S&W and yearly professional inspection.\n2. Check to make sure the inspection tag is not expired."], ["1. Fire extinguisher use training preferred, but use of fire extinguisher is permitted for anyone in an emergency."]],
     [3,  false, "safety3",   ["vehicles"], ["1. Routine inspection by S&W so that vehicles meet the requirements for safe operation on roads.\n2. Seat belts shall be in good working order with no visible damage or alterations."], ["1. Valid driver's license."]],
     [4,  false, "safety4",   ["photo\-ionization detector (PID)"], ["1. Daily calibration or calibration check."], ["1. Read manual or direct training by S&W staff."]],
     [5,  false, "safety5",   ["personal protective equipment (PPE)"], ["1. PPE shall be in good working order with no visible damage or alterations."], [""]],
@@ -290,7 +319,7 @@ $(document).ready(function()
     [16, 2,  0,  true,   ["condition"],  ["All"],                 [["Fatigue, overexertion"], [["1. Take breaks, as necessary."]]]],
     [17, 3,  3,  false,  ["condition3"], ["Night/Low Light"],     [["Injury due to unseen hazards in low light conditions"], [["1. Have appropriate lighting to perform the work."], ["2. Have a portable flashlight or other lighting device to travel beyond lighted areas."], ["3. Be aware of hidden hazards in unlighted areas."]]]],
     [18, 4,  5,  false,  ["condition5"], ["Extended work hours"], [["Lack of awareness and alertness, reduced work performance, injury due to fatigue due to extended work hours"], [["1. Be aware of reduced work performance (mistakes) and signs of fatigue and stop work if necessary."], ["2. Get at least 7 hours of rest in between work periods."]]]],
-    [19, 5,  2,  false,  ["condition2"], ["Hot weather"],         [["Heat exhaustion, heat stroke, fatigue, dehydration due to hot weather"], [["1. Be aware of signs of heat exhaustion and heat stroke."], ["2. Adjust work schedules as possible to work in cooler parts of day (rest during hotter parts of day)."], ["2. Establish shaded area or cool shelter nearby for resting."], ["3. Maintain body electrolytes and hydration."]]]],
+    [19, 5,  2,  false,  ["condition2"], ["Hot weather"],         [["Heat exhaustion, heat stroke, fatigue, dehydration due to hot weather"], [["1. Be aware of signs of heat exhaustion and heat stroke."], ["2. Adjust work schedules as possible to work in cooler parts of day (rest during hotter parts of day)."], ["3. Establish shaded area or cool shelter nearby for resting."], ["4. Maintain body electrolytes and hydration."]]]],
     [20, 6,  4,  false,  ["condition4"], ["Cold weather"],        [["Frostbite, hypothermia due to cold weather"], [["1. Be aware of signs of frostbite and hypothermia."], ["2. Stay dry.  Wear rain gear and have extra clothing available in case primary clothing gets wet."], ["3. Stay warm.  Wear appropriate layered clothing and footwear."], ["4. Establish a warm shelter area or vehicle nearby to warm up."]]]],
     [21, 6,  4,  false,  ["condition4"], ["Cold weather"],        [["Slips, trips, falls on icy/slippery surfaces"], [["1. Take care when walking on slippery surfaces."]]]],
     [22, 7,  6,  false,  ["condition6"], ["Lightning/Storms"],    [["Exposure, hypothermia due to dangerous storms"], [["1. Check weather report prior to planning work for the day.  Do not work if dangerous storms are predicted."]]]],
@@ -1001,5 +1030,33 @@ $(document).ready(function()
 
   $("button#update").click(function () {
     updateDatabase(form);
+  });
+
+  $('button#generateMap').click(function (event) {
+    var job_site = "Shannon & Wilson Inc";
+    var hospital = "Harborview Medical Center";
+    var base_url = "https://www.google.com/maps/embed/v1/directions";
+    var api_key = "AIzaSyBWgoQ5uL9DVpsobFbK8y-eVBFewNzZnQE";
+    var query_params = {
+      origin: job_site.trim().replace(/\s+/g, '+'),
+      destination: hospital.trim().replace(/\s+/g, '+'),
+      key: api_key,
+    };
+    var query_string = $.param(query_params);
+    var map_url = [base_url, query_string].join('?');
+    var map_iframe = $(document.createElement('iframe'));
+    var map_attrs = {
+      src: map_url,
+      width: "600",
+      height: "450",
+      frameborder: "0",
+      style: "border:0",
+      allowfullscreen: "true",
+    };
+    Object.keys(map_attrs).forEach(function (attr_name) {
+      var attr_value = map_attrs[attr_name];
+      map_iframe.attr(attr_name, attr_value);
+    });
+    $('body').append(map_iframe);
   });
 });
