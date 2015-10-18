@@ -1,7 +1,7 @@
 $(document).ready(function()
 {
-  var form = $('form[name="myform"]');
-  var form2 = $('form[name="myform2"]');
+/*  var form = $('form[name="myform"]');
+  var form2 = $('form[name="myform2"]');*/
 
   var textHeader = "SHANNON & WILSON, INC.";
 
@@ -140,7 +140,7 @@ $(document).ready(function()
     "Potential Hazards\nAnalyze each work activity\nfor potential hazards",
     "Safe Job Practices\nDevelop specific engineering, administrative, and\npersonal controls for potential hazards for each\nwork activity."
   ];
-
+/*
   var taskSubheadings = [
     [1,  true,  "Travel to and from site"],
     [2,  true,  "General work on site"],
@@ -169,7 +169,7 @@ $(document).ready(function()
     [25, false, "Performing field reconnaissance"],
     [26, false, "Lifting of samples or other heavy items"]
   ];
-
+*/
   var travel = [   // [ID, selected, checkBoxId, description]
     [1, false, "travel1", "by car/truck on paved roads/highways"],
     [2, false, "travel2", "by car/truck on single\-lane/unpaved highways"],
@@ -384,17 +384,17 @@ $(document).ready(function()
   function marginFromLeft (docX, docInfo, inputString) {
     var textWidth = docX.getStringUnitWidth (inputString) * docInfo.fontSizeText/docX.internal.scaleFactor;
     return ((docInfo.pageWidth - textWidth)/2);
-  }
+  };
   function printHeader (docX, docInfo) {
     docX.setTextColor (150);
     docX.text (docInfo.pageWidth-20, 10, "SHANNON & WILSON, INC.");
     docX.setTextColor (0);
-  }
+  };
   function printFooter (docX, form, docInfo) {
     docX.text (docInfo.leftMargin-5, docInfo.pageLength+10, $('input[name="dateToday"]').val());
     docX.text (docInfo.leftMargin+(docInfo.pageWidth*45/100), docInfo.pageLength+10, "Page " + docInfo.pageNumber);
     docX.text (docInfo.rightMargin, docInfo.pageLength+10, $('input[name="jobNumber"]').val());
-  }
+  };
   function insertPage (docX, form, docInfo) {
     docX.addPage ();
     docInfo.pageNumber += 1;
@@ -403,21 +403,21 @@ $(document).ready(function()
     docInfo.verticalOffset = docInfo.topMargin;   // topMargin
     docInfo.rowOffset = docInfo.topMargin;   // topMargin
     return (docInfo);
-  }
+  };
   /*
   function drawTableBorders (doc, horizontalOffset, verticalOffset, lineSpacing, boxWidth, numRows) {
     doc.line (horizontalOffset, verticalOffset, horizontalOffset+boxWidth, verticalOffset);
     doc.line (horizontalOffset, verticalOffset+lineSpacing*numRows*1.2, horizontalOffset+boxWidth, verticalOffset+lineSpacing*numRows*1.2);
     doc.line (horizontalOffset, verticalOffset, horizontalOffset, verticalOffset+lineSpacing*numRows*1.2);
     doc.line (horizontalOffset+boxWidth, verticalOffset, horizontalOffset+boxWidth, verticalOffset+lineSpacing*numRows*1.2);
-  }
+  };
   */
   function drawTableBorders (docX, left, top, rowHeight, boxWidth, numRows) {
     docX.line (left, top, left + boxWidth, top);
     docX.line (left, top + (rowHeight*numRows*1.2), left + boxWidth, top + (rowHeight*numRows*1.2));
     docX.line (left, top, left, top + (rowHeight*numRows*1.2));
     docX.line (left + boxWidth, top, left + boxWidth, top + (rowHeight*numRows*1.2));
-  }
+  };
 
   function drawTableGrid (docX, horizontalOffset, verticalOffset, lineSpacing, boxWidth, numRows, numCols) {
     for (i=1; i<numCols; i++) {
@@ -427,14 +427,14 @@ $(document).ready(function()
     for (i=1; i<numRows; i++) {
       docX.line (horizontalOffset, verticalOffset+lineSpacing*i*1.2, horizontalOffset+boxWidth, verticalOffset+lineSpacing*i*1.2);
     }
-  }
+  };
   function printFieldName (docX, docInfo, text) {
     docX.setFontType ("bold");
     docX.setFont ("arial");
     docX.text (docInfo.horizontalOffset, docInfo.verticalOffset, text);
     docX.setFontType ("regular");
     docX.setFont ("arial");
-  }
+  };
   function splitText (docX, form, docInfo, text, column) {
     var i, j, textArray;
     for (i in text)
@@ -455,10 +455,9 @@ $(document).ready(function()
       }
     }
     return (docInfo);
-  }
+  };
 
-  function generateHSP (form)
-  {
+  function generateHSP (form)  {
     // Use http://dataurl.net/#dataurlmaker
     var i, j, k;
     var hazardIndex = 0;
@@ -578,7 +577,7 @@ $(document).ready(function()
     docInfo.textWidth = pageWidthPortrait;
     docInfo.horizontalOffset = leftMargin;
 
-    if (docInfo.rowWidth > docInfo.verticalOffset) {docInfo.verticalOffset = docInfo.rowWidth;}
+    if (docInfo.rowWidth > docInfo.verticalOffset) { docInfo.verticalOffset = docInfo.rowWidth; }
     docInfo.verticalOffset += docInfo.lineSpacing;
 
     i = 0;
@@ -1011,7 +1010,7 @@ $(document).ready(function()
 
     doc.save ('Test.pdf');
     docL.save ('TestL.pdf');
-  }
+  };
 /*
   function updateDatabase(form2) {
     if ($('input#travel1').prop('checked')) {travel[0][1] = true; text[0] += travel[0][3] + ", ";}
@@ -1032,6 +1031,7 @@ $(document).ready(function()
     updateDatabase(form);
   });
 
+/*
   $('button#generateMap').click(function (event) {
     var job_site = "Shannon & Wilson Inc";
     var hospital = "Harborview Medical Center";
@@ -1058,5 +1058,5 @@ $(document).ready(function()
       map_iframe.attr(attr_name, attr_value);
     });
     $('body').append(map_iframe);
-  });
+  });  */
 });
